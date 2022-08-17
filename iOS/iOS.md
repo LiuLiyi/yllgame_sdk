@@ -10,6 +10,8 @@ SDK下载地址(请联系对接人获取)
 
 **SDK不支持bitcode，项目请勿打开**
 
+**SDK目前支持语言: 阿拉伯语**
+
 ## 2.iOS项目修改
 
 ### 2.1添加资源
@@ -157,8 +159,8 @@ UPLOAD_SIMULATOR_SYMBOLS=0
 [YllGameSDK getInstance].appleAppId = @"";
 [YllGameSDK getInstance].buglyAppId = @"";
 [YllGameSDK getInstance].appsFlyerDevKey = @"";
-// languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 该集合默认第一个是SDK的默认语言
-[YllGameSDK getInstance].languageList = @[@"ar", @"en"];
+// languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 该集合默认第一个是SDK的默认语言
+[YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
 // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
 [YllGameSDK getInstance].localLanguage = @"ar";
 // 设置SDK的网络模式, 默认是 YGStrongNet 强网模式

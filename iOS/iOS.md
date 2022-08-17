@@ -514,8 +514,8 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
       
 ```obj-c
 /// 上传图片
-/// @param clipRatio 裁剪比例, 传 YGClipRatioNone 表示不裁剪
-[[YllGameSDK getInstance] yg_updatePictureWithClipRation:<#(YGClipRatio)#> successBlock:<#^(NSString * _Nullable imageUrl)successBlock#> failedBlock:<#^(NSString * _Nullable error)failedBlock#>];
+/// @param selectedType 选择相册之后的显示模式
+[[YllGameSDK getInstance] yg_updatePictureWithAlbumSelectedType:<#(YGAlbumSelectedType)#> successBlock:<#^(NSString * _Nullable imageUrl)successBlock#> failedBlock:<#^(NSString * _Nullable error)failedBlock#>];
 ```
 
 ### 3.26 获取活动信息
@@ -559,4 +559,38 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```obj-c
 /// 展示账号绑定页面
 [[YllGameSDK getInstance] yg_showPhoneBindViewWithCompleteHandler:<#^(BOOL)completeHandler#>];
+```
+      
+### 3.31 展示举报消息页面
+      
+```obj-c
+/// 展示举报消息页面
+/// @param serverId 举报游戏服Id
+/// @param reportRoleId 举报者角色Id
+/// @param beReportRoleId 被举报者角色Id
+/// @param scene 举报场景
+/// @param chatMsgList 举报信息数组
+[[YllGameSDK getInstance] yg_showReportCustomMsgViewWithServerId:<#(nonnull NSString *)#> reportRoleId:<#(nonnull NSString *)#> beReportRoleId:<#(nonnull NSString *)#> scene:<#(nonnull NSString *)#> chatMsgList:<#(nonnull NSArray<YGReprotModel *> *)#>];
+```
+      
+### 3.32 展示举报语聊房消息页面
+      
+```obj-c
+/// 展示举报语聊房消息页面
+/// @param roomId 房间Id
+/// @param reportGameServerId 举报者区服Id
+/// @param beReportGameServerId 被举报者区服Id
+/// @param reportRoleId 举报者角色Id
+/// @param beReportRoleId 被举报者角色Id
+/// @param chatMsgList 举报信息数组
+[[YllGameSDK getInstance] yg_showReportChatRoomMsgViewWithRoomId:<#(nonnull NSString *)#> reportGameServerId:<#(nonnull NSString *)#> beReportGameServerId:<#(nonnull NSString *)#> reportRoleId:<#(nonnull NSString *)#> beReportRoleId:<#(nonnull NSString *)#> chatMsgList:<#(nonnull NSArray<YGReprotModel *> *)#>];
+```
+      
+### 3.33 展示网络检测页面
+      
+```obj-c
+/// 展示网络检测页面
+/// @param userId 用户Id
+/// @param roleId 游戏角色Id
+[[YllGameSDK getInstance] yg_showNetCheckViewWithUserId:<#(NSString * _Nullable)#> roleId:<#(NSString * _Nullable)#>];
 ```

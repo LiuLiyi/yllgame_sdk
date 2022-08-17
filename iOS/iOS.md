@@ -548,13 +548,15 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```
       
 ### 3.29 展示账号绑定页面
-      
+- 显示账号绑定页面, 并返回当前账号所有的绑定信息模型
+
 ```obj-c
 /// 展示账号绑定页面
 [[YllGameSDK getInstance] yg_showAccountBindViewWithCompleteHandler:<#^(YGUserAcccountBindModel * _Nonnull)completeHandler#>];
 ```
       
 ### 3.30 展示手机号绑定页面
+- 显示手机号绑定页面, 返回是否绑定成功的结果
       
 ```obj-c
 /// 展示账号绑定页面
@@ -562,6 +564,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```
       
 ### 3.31 展示举报消息页面
+- 展示普通消息举报页面
       
 ```obj-c
 /// 展示举报消息页面
@@ -574,6 +577,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```
       
 ### 3.32 展示举报语聊房消息页面
+- 展示房间聊天消息举报页面
       
 ```obj-c
 /// 展示举报语聊房消息页面
@@ -587,7 +591,8 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```
       
 ### 3.33 展示网络检测页面
-      
+- 网络检测功能页面, 提供一键复制检测结果功能
+
 ```obj-c
 /// 展示网络检测页面
 /// @param userId 用户Id

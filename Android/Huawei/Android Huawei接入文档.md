@@ -522,7 +522,7 @@ public class MyHmsMessageService extends HmsMessageService {
 }
 ```
 **注：YGMessageApi.getInstance().handlePushMessage(remoteMessage);函数必须接入，在推送消息的service的onMessageReceived里。**
-### 6.3推送通知栏点击处理
+### 6.2推送通知栏点击处理
  ``` java
  public class LauncherActivity extends AppCompatActivity {
 
@@ -537,7 +537,7 @@ public class MyHmsMessageService extends HmsMessageService {
 }
  ```
 **注：用户点击通知栏的时候会默认进入launch的activity，在当前界面获取传递的数据并调SDK的clickPushMessage函数**
-### 6.4获取推送token
+### 6.3获取推送token
 -调用获取token调用方式：YGMessageApi.getInstance().getPushToken() 
  ``` java
      /**

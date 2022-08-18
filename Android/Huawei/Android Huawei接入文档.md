@@ -497,7 +497,7 @@ classpath 'com.huawei.agconnect:agcp:1.4.2.300'
 ## 6.华为推送
 ### 6.1清单文件配置推送Service和华为id
 ``` xml
-<string name="yll_game_sdk_huawei_appid" translatable="false">104219821</string>
+<string name="yll_game_sdk_huawei_appid" translatable="false">xxxxxxxx</string>
 <!--华为id-->
         <meta-data
             android:name="com.yllgame.sdk.huawei.ApplicationId"

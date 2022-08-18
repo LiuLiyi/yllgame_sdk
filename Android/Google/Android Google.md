@@ -61,6 +61,9 @@
     api 'com.tencent.bugly:crashreport:3.3.92'
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     api 'com.tencent.bugly:nativecrashreport:3.9.0'
+    //图片加载库
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
  ```
 
 ## 2.项目配置，初始化
@@ -376,6 +379,62 @@ public class YGReceiver extends BroadcastReceiver {
      */
     public void showPhoneBindView(Activity activity, YGBooleanCallBack ygBooleanCallBack)
 ```
+### 4.2.3 展示举报消息页面
+- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showReportCustomMsgView ``
+``` java 
+
+    /**
+     * 展示举报消息页面
+     *
+     * @param activity       当前Activity
+     * @param gameServerId   区服id
+     * @param reportRoleId   举报者角色Id
+     * @param beReportRoleId 被举报者角色Id
+     * @param scene          场景（世界、联盟、私聊）根据游戏定
+     * @param chatMsgList    消息内容数据集合
+     *                       {"roleId":"消息发送者角色id",
+     *                       "roleName":"角色名称",
+     *                       "msgContent":"消息内容",
+     *                       "msgContent":"消息内容",
+     *                       "msgType":0 文本消息  1图片消息,
+     *                       "msgTime":"发送时间(格式:yyyy-MM-dd HH:mm:ss)",
+     *                       "isReport":1(是否为举报消息1是 0否)}
+     */
+    public void showReportCustomMsgView(Activity activity,
+                                        String gameServerId,
+                                        String reportRoleId,
+                                        String beReportRoleId,
+                                        String scene,
+                                        List<GameReportChatEntity> chatMsgList) 
+```
+### 4.2.4 展示举报语聊房消息页面
+- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showReportChatRoomMsgView ``
+``` java 
+    /**
+     * 展示举报语聊房消息页面
+     *
+     * @param activity             当前Activity
+     * @param roomId               房间id
+     * @param reportGameServerId   举报者区服id
+     * @param beReportGameServerId 被举报者区服id
+     * @param reportRoleId         举报者角色Id
+     * @param beReportRoleId       被举报者角色Id
+     * @param chatMsgList          消息内容数据集合
+     *                             {"roleId":"消息发送者角色id",
+     *                             "roleName":"角色名称",
+     *                             "msgContent":"消息内容",
+     *                             "msgType":0 文本消息  1图片消息,
+     *                             "msgTime":"发送时间(格式:yyyy-MM-dd HH:mm:ss)",
+     *                             "isReport":1(是否为举报消息1是 0否)}
+     */
+    public void showReportChatRoomMsgView(Activity activity,
+                                          String roomId,
+                                          String reportGameServerId,
+                                          String beReportGameServerId,
+                                          String reportRoleId,
+                                          String beReportRoleId,
+                                          List<GameReportChatEntity> chatMsgList)
+```
 ## 5.支付
 ### 5.1 谷歌支付
 - SDK调起谷歌支付的函数为：`` YGPayApi.pay() ``
@@ -668,11 +727,15 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
 ``` java 
     /**
      * 阿里云上传图片
-     * @param activity  当前Activity
-     * @param clipRatio 裁剪比例, {@link YGConstants#CLIP_RATIO_NONE} 表示不裁剪 {@link YGConstants#CLIP_RATIO_1_1} 裁剪
-     * @param callBack  上传回调返回图片绝对路劲
+     *
+     * @param activity 当前Activity
+     * @param type     类型,
+     *                 {@link YGConstants#SDK_IMAGE_SELECT_NONE} 表示选择图片不裁剪
+     *                 {@link YGConstants#SDK_IMAGE_SELECT_CLIP_RATIO_1_1} 选择图片裁剪
+     *                 {@link YGConstants#SDK_IMAGE_SELECT_PREVIEW} 选择图片和预览
+     * @param callBack 上传回调返回图片绝对路劲
      */
-    public void updatePicture(Activity activity, int clipRatio, YGCallBack<String> callBack)
+    public void updatePicture(Activity activity, int type, YGCallBack<String> callBack)
 ```
 代码示例
 ``` java 

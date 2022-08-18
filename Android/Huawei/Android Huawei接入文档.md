@@ -66,6 +66,9 @@
     api 'com.huawei.hms:ads-identifier:3.4.39.302'
     //华为支付 hms
     api 'com.huawei.hms:iap:5.1.0.300'
+    //图片加载库
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
  ```
 
 ## 2.项目配置，初始化
@@ -373,6 +376,62 @@ public class YGReceiver extends BroadcastReceiver {
      */
     public void showPhoneBindView(Activity activity, YGBooleanCallBack ygBooleanCallBack)
 ```
+### 4.2.3 展示举报消息页面
+- SDK调起展示举报消息页面的函数为：`` YGUserApi.getInstance().showReportCustomMsgView ``
+``` java 
+
+    /**
+     * 展示举报消息页面
+     *
+     * @param activity       当前Activity
+     * @param gameServerId   区服id
+     * @param reportRoleId   举报者角色Id
+     * @param beReportRoleId 被举报者角色Id
+     * @param scene          场景（世界、联盟、私聊）根据游戏定
+     * @param chatMsgList    消息内容数据集合
+     *                       {"roleId":"消息发送者角色id",
+     *                       "roleName":"角色名称",
+     *                       "msgContent":"消息内容",
+     *                       "msgContent":"消息内容",
+     *                       "msgType":0 文本消息  1图片消息,
+     *                       "msgTime":"发送时间(格式:时间戳)",
+     *                       "isReport":1(是否为举报消息1是 0否)}
+     */
+    public void showReportCustomMsgView(Activity activity,
+                                        String gameServerId,
+                                        String reportRoleId,
+                                        String beReportRoleId,
+                                        String scene,
+                                        List<GameReportChatEntity> chatMsgList) 
+```
+### 4.2.4 展示举报语聊房消息页面
+- SDK调起展示举报语聊房消息页面的函数为：`` YGUserApi.getInstance().showReportChatRoomMsgView ``
+``` java 
+    /**
+     * 展示举报语聊房消息页面
+     *
+     * @param activity             当前Activity
+     * @param roomId               房间id
+     * @param reportGameServerId   举报者区服id
+     * @param beReportGameServerId 被举报者区服id
+     * @param reportRoleId         举报者角色Id
+     * @param beReportRoleId       被举报者角色Id
+     * @param chatMsgList          消息内容数据集合
+     *                             {"roleId":"消息发送者角色id",
+     *                             "roleName":"角色名称",
+     *                             "msgContent":"消息内容",
+     *                             "msgType":0 文本消息  1图片消息,
+     *                             "msgTime":"发送时间(格式:时间戳)",
+     *                             "isReport":1(是否为举报消息1是 0否)}
+     */
+    public void showReportChatRoomMsgView(Activity activity,
+                                          String roomId,
+                                          String reportGameServerId,
+                                          String beReportGameServerId,
+                                          String reportRoleId,
+                                          String beReportRoleId,
+                                          List<GameReportChatEntity> chatMsgList)
+```
 ## 5.支付
 ### 5.1 导入华为json文件 配置清单文件信息
 - 导入agconnect-services.json文件，文件需找运营方要 </br>
@@ -395,6 +454,7 @@ id 'com.huawei.agconnect'
 - 在项目的build.gradle文件夹</br>
 ![image](https://user-images.githubusercontent.com/19358621/119936866-68ec3700-bfbc-11eb-9db9-e725f3bc63ad.png)
 ```
+maven {url 'https://developer.huawei.com/repo/'}
 classpath 'com.huawei.agconnect:agcp:1.4.2.300'
 ```
 ### 5.4 设置华为支付回调（此函数已废弃，接入文档8.3 ）
@@ -432,38 +492,34 @@ classpath 'com.huawei.agconnect:agcp:1.4.2.300'
                                         String number, String amount,
                                         String pointId, YGPaymentListener listener)
 ```
-## 6.推送
-### 6.1 配置Google 服务插件和导入google-service.json
-在项目的build.gradle配置com.google.gms.google-services插件并且导入google-service.json文件
- ![image](https://user-images.githubusercontent.com/19358621/118480934-7ea06780-b745-11eb-94fc-d0048ef543da.png)
-![image](https://user-images.githubusercontent.com/19358621/118481332-f1a9de00-b745-11eb-9627-58079b444310.png)
-
-### 6.2清单文件配置推送Service和推送图标
+## 6.华为推送
+### 6.1清单文件配置推送Service和华为id
 ``` xml
+<string name="yll_game_sdk_huawei_appid" translatable="false">104219821</string>
+<!--华为id-->
+        <meta-data
+            android:name="com.yllgame.sdk.huawei.ApplicationId"
+            android:value="@string/yll_game_sdk_huawei_appid" />
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".MyHmsMessageService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/yll_game_ic_logo" />
 ```
 ``` java
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
+public class MyHmsMessageService extends HmsMessageService {
     @Override
-    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        //判断是否是SDK内部消息，是的话 就返回true 返回false则表示非SDK内部消息 需游戏方自行处理
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        LogUtils.logEForDeveloper("收到消息：" + remoteMessage.getData());
         if (!YGMessageApi.getInstance().handlePushMessage(remoteMessage))
-            Log.d("FirebaseMessaging", "游戏内部消息");
+            LogUtils.logEForDeveloper("游戏内部消息");
         super.onMessageReceived(remoteMessage);
     }
 }
 ```
-**注：com.google.firebase.messaging.default_notification_icon 图标为透明单色图标
-YGMessageApi.getInstance().handlePushMessage(remoteMessage);函数必须接入，在推送消息的service的onMessageReceived里。**
+**注：YGMessageApi.getInstance().handlePushMessage(remoteMessage);函数必须接入，在推送消息的service的onMessageReceived里。**
 ### 6.3推送通知栏点击处理
  ``` java
  public class LauncherActivity extends AppCompatActivity {
@@ -687,13 +743,17 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
 ```
 - 阿里云上传图片的函数为：`` YGTripartiteApi.getInstance().updatePicture ``
 ``` java 
-        /**
+    /**
      * 阿里云上传图片
-     * @param activity  当前Activity
-     * @param clipRatio 裁剪比例, {@link YGConstants#CLIP_RATIO_NONE} 表示不裁剪 {@link YGConstants#CLIP_RATIO_1_1} 裁剪
-     * @param callBack  上传回调返回图片绝对路劲
+     *
+     * @param activity 当前Activity
+     * @param type     类型,
+     *                 {@link YGConstants#SDK_IMAGE_SELECT_NONE} 表示选择图片不裁剪
+     *                 {@link YGConstants#SDK_IMAGE_SELECT_CLIP_RATIO_1_1} 选择图片裁剪
+     *                 {@link YGConstants#SDK_IMAGE_SELECT_PREVIEW} 选择图片和预览
+     * @param callBack 上传回调返回图片绝对路劲
      */
-    public void updatePicture(Activity activity, int clipRatio, YGCallBack<String> callBack)
+    public void updatePicture(Activity activity, int type, YGCallBack<String> callBack)
 ```
 代码示例
 ``` java 
@@ -732,4 +792,16 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
         YGCommonApi.setCallback(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
+```
+## 11 
+### 11.1网络检测
+- 调用网络检测函数为：`` YGCommonApi.showNetCheckView() ``
+``` java
+    /**
+     * 网络检测
+     * @param activity 当前activity
+     * @param userId 用户id
+     * @param roleId 角色id
+     */
+    public void showNetCheckView(Activity activity, String userId, String roleId)
 ```

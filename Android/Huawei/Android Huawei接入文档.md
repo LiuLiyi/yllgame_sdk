@@ -66,6 +66,8 @@
     api 'com.huawei.hms:ads-identifier:3.4.39.302'
     //华为支付 hms
     api 'com.huawei.hms:iap:5.1.0.300'
+    //华为推送
+    api 'com.huawei.hms:push:6.5.0.300'
     //图片加载库
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'

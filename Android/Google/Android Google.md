@@ -380,7 +380,7 @@ public class YGReceiver extends BroadcastReceiver {
     public void showPhoneBindView(Activity activity, YGBooleanCallBack ygBooleanCallBack)
 ```
 ### 4.2.3 展示举报消息页面
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showReportCustomMsgView ``
+- SDK调起展示举报消息页面的函数为：`` YGUserApi.getInstance().showReportCustomMsgView ``
 ``` java 
 
     /**
@@ -408,7 +408,7 @@ public class YGReceiver extends BroadcastReceiver {
                                         List<GameReportChatEntity> chatMsgList) 
 ```
 ### 4.2.4 展示举报语聊房消息页面
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showReportChatRoomMsgView ``
+- SDK调起展示举报语聊房消息页面的函数为：`` YGUserApi.getInstance().showReportChatRoomMsgView ``
 ``` java 
     /**
      * 展示举报语聊房消息页面
@@ -776,4 +776,16 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
         YGCommonApi.setCallback(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
+```
+## 11 
+### 11.1网络检测
+- 调用网络检测函数为：`` YGCommonApi.showNetCheckView() ``
+``` java
+    /**
+     * 网络检测
+     * @param activity 当前activity
+     * @param userId 用户id
+     * @param roleId 角色id
+     */
+    public void showNetCheckView(Activity activity, String userId, String roleId)
 ```

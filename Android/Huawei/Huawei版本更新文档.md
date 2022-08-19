@@ -9,6 +9,8 @@
 6. SDK内部优化
 7. 新增三方库//图片加载库
  ``` 
+ //华为支付 hms
+ api 'com.huawei.hms:iap:5.1.0.300'
  implementation 'com.github.bumptech.glide:glide:4.13.2'
  annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
  ```

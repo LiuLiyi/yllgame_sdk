@@ -594,6 +594,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
       
 ### 3.33 展示网络检测页面
 - 网络检测功能页面, 提供一键复制检测结果功能
+- 该方法需要依赖 NetDiag.xcframework, 该 framework 需要找SDK方下载
 
 ```obj-c
 /// 展示网络检测页面

@@ -495,9 +495,11 @@ classpath 'com.huawei.agconnect:agcp:1.4.2.300'
                                         String pointId, YGPaymentListener listener)
 ```
 ## 6.华为推送
-### 6.1清单文件配置推送Service和华为id
+### 6.1在value下的strings.xml添加 华为id
 ``` xml
-<string name="yll_game_sdk_huawei_appid" translatable="false">xxxxxxxx</string>
+<string name="yll_game_sdk_huawei_appid" translatable="false">appid</string>
+```
+``` xml
 <!--华为id-->
         <meta-data
             android:name="com.yllgame.sdk.huawei.ApplicationId"
@@ -510,6 +512,7 @@ classpath 'com.huawei.agconnect:agcp:1.4.2.300'
             </intent-filter>
         </service>
 ```
+### 6.2清单文件配置推送Service
 ``` java
 public class MyHmsMessageService extends HmsMessageService {
     @Override
@@ -522,7 +525,7 @@ public class MyHmsMessageService extends HmsMessageService {
 }
 ```
 **注：YGMessageApi.getInstance().handlePushMessage(remoteMessage);函数必须接入，在推送消息的service的onMessageReceived里。**
-### 6.2推送通知栏点击处理
+### 6.3推送通知栏点击处理
  ``` java
  public class LauncherActivity extends AppCompatActivity {
 
@@ -537,7 +540,7 @@ public class MyHmsMessageService extends HmsMessageService {
 }
  ```
 **注：用户点击通知栏的时候会默认进入launch的activity，在当前界面获取传递的数据并调SDK的clickPushMessage函数**
-### 6.3获取推送token
+### 6.4获取推送token
 -调用获取token调用方式：YGMessageApi.getInstance().getPushToken() 
  ``` java
      /**

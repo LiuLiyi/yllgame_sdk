@@ -8,7 +8,7 @@
 6. SDK内部优化
 7. 新增三方库//图片加载库
  ``` 
- api  'com.github.bumptech.glide:glide:4.13.2'
+ api 'com.github.bumptech.glide:glide:4.13.2'
  annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
  ```
 ### SDK版本1.0.5

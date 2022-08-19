@@ -62,7 +62,7 @@
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     api 'com.tencent.bugly:nativecrashreport:3.9.0'
     //图片加载库
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    api 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
  ```
 

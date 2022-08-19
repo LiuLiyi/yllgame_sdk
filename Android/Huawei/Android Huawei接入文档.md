@@ -69,7 +69,7 @@
     //华为推送
     api 'com.huawei.hms:push:6.5.0.300'
     //图片加载库
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    api 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
  ```
 

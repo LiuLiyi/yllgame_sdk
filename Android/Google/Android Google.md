@@ -11,7 +11,7 @@
 首先把AAR包复制到项目的lib目录下，然后在主项目APP的工程下build.gradle 中的dependencies加入
  ``` Groovy
  //SDK基础库
- implementation(name: 'YllGameSdk_1.0.1', ext: 'aar') 
+ implementation(name: 'YllGameSdk', ext: 'aar') 
  ```
  ### 1.2设置项目的libs文件目录和过滤so
  在主项目APP的工程下build.gradle 中的android加入

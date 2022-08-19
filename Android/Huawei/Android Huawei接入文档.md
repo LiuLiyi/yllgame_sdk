@@ -396,7 +396,7 @@ public class YGReceiver extends BroadcastReceiver {
      *                       "msgContent":"消息内容",
      *                       "msgContent":"消息内容",
      *                       "msgType":0 文本消息  1图片消息,
-     *                       "msgTime":"发送时间(格式:时间戳)",
+     *                       "msgTime":"发送时间(时间戳到秒)",
      *                       "isReport":1(是否为举报消息1是 0否)}
      */
     public void showReportCustomMsgView(Activity activity,
@@ -423,7 +423,7 @@ public class YGReceiver extends BroadcastReceiver {
      *                             "roleName":"角色名称",
      *                             "msgContent":"消息内容",
      *                             "msgType":0 文本消息  1图片消息,
-     *                             "msgTime":"发送时间(格式:时间戳)",
+     *                             "msgTime":"发送时间(时间戳到秒)",
      *                             "isReport":1(是否为举报消息1是 0否)}
      */
     public void showReportChatRoomMsgView(Activity activity,

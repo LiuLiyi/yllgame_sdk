@@ -11,7 +11,7 @@
 首先把AAR包复制到项目的lib目录下，然后在主项目APP的工程下build.gradle 中的dependencies加入
  ``` Groovy
  //SDK基础库
- implementation(name: 'YllGameSdk_1.0.1', ext: 'aar') 
+ implementation(name: 'YllGameSdk', ext: 'aar') 
  ```
  ### 1.2设置项目的libs文件目录和过滤so
  在主项目APP的工程下build.gradle 中的android加入
@@ -396,7 +396,7 @@ public class YGReceiver extends BroadcastReceiver {
      *                       "msgContent":"消息内容",
      *                       "msgContent":"消息内容",
      *                       "msgType":0 文本消息  1图片消息,
-     *                       "msgTime":"发送时间(时间戳到秒)",
+     *                       "msgTime":"发送时间(时间戳到秒，)",
      *                       "isReport":1(是否为举报消息1是 0否)}
      */
     public void showReportCustomMsgView(Activity activity,
@@ -423,7 +423,7 @@ public class YGReceiver extends BroadcastReceiver {
      *                             "roleName":"角色名称",
      *                             "msgContent":"消息内容",
      *                             "msgType":0 文本消息  1图片消息,
-     *                             "msgTime":"发送时间(时间戳到秒)",
+     *                             "msgTime":"发送时间(时间戳到秒，)",
      *                             "isReport":1(是否为举报消息1是 0否)}
      */
     public void showReportChatRoomMsgView(Activity activity,

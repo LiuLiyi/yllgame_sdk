@@ -7,7 +7,7 @@
 4. 上传照片函数名修改 (具体请查阅 iOS接入文档 -> 3.25 上传图片)
 5. 新增土耳其语, 语言简称 "tr"
 6. 新增定位权限 (具体请查阅 iOS接入文档 -> 2.2 项目配置 -> 6. SDK所需权限)
-7. 移除Bugly, 移除YllGameSDK文件下的buglyAppId属性
+7. 移除pod 'Bugly', '~> 2.5.90', 移除YllGameSDK文件下的buglyAppId属性, SDK去除Bugly功能
 8. SDK内部优化
 
 - v1.0.5

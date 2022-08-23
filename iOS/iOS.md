@@ -140,6 +140,10 @@ UPLOAD_SIMULATOR_SYMBOLS=0
 #### 7. SDK所需权限
 - 相册权限 Privacy - Photo Library Usage Description
 - IDFA权限 Privacy - Tracking Usage Description
+- Privacy - Location Always and When In Use Usage Description 地理位置权限
+- Privacy - Location Always Usage Description 地理位置权限
+- Privacy - Location Usage Description 地理位置权限
+- Privacy - Location When In Use Usage Description 地理位置权限
 - 权限的具体描述请根据游戏的实际使用进行定义，如果游戏没有使用，可以向SDK方要通用的阿语描述
 
 ## 3. SDK初始化与API接口

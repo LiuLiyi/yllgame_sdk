@@ -10,11 +10,12 @@
 7. 新增三方库//图片加载库
  ``` 
  //华为支付 hms
- api 'com.huawei.hms:iap:5.1.0.300'
+ api api 'com.huawei.hms:push:6.5.0.300'
  api 'com.github.bumptech.glide:glide:4.13.2'
  annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
  ```
 8.新增华为推送
+9.移除Bugly SDK
 ### SDK版本1.0.5
 1. 新增展示手机号绑定页面(4.2.2展示手机号绑定页面)
 ###  SDK版本1.0.4.3

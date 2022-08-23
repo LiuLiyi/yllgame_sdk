@@ -57,10 +57,6 @@
     api 'com.google.firebase:firebase-analytics'
     api 'com.google.firebase:firebase-core:16.0.1'
     api 'com.aliyun.dpa:oss-android-sdk:2.9.9'
-    //Bugly
-    api 'com.tencent.bugly:crashreport:3.3.92'
-    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    api 'com.tencent.bugly:nativecrashreport:3.9.0'
     //华为登陆 hms
     api 'com.huawei.hms:hwid:5.2.0.300'
     api 'com.huawei.hms:ads-identifier:3.4.39.302'
@@ -92,9 +88,8 @@
      * @param appId            游戏的gameAppId
      * @param googleClientId   游戏的googleClientId
      * @param appsFlyersDevKey 游戏的appsFlyersDevKey
-     * @param buglyAppId          游戏的buglyAppId
      */
-    public void init(Application application, String appId, String googleClientId, String appsFlyersDevKey,String buglyAppId)
+    public void init(Application application, String appId, String googleClientId, String appsFlyersDevKey)
  ```
  - SDK 设置语言集合函数：``` YllGameSdk.setLanguageList(); ```
 ``` java 

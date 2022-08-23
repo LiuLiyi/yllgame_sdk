@@ -60,6 +60,9 @@
     //图片加载库
     api 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+    //Crash
+    api 'com.google.firebase:firebase-crashlytics'
+    api 'com.google.firebase:firebase-crashlytics-ndk'
  ```
 
 ## 2.项目配置，初始化
@@ -206,6 +209,15 @@ public class YGReceiver extends BroadcastReceiver {
 ### 2.6 设置allowBackup配置
 ``` android:allowBackup="false" ```</br>
 **注：新生成的项目allowBackup为true，须在项目的AndroidManifest中application设置allowBackup为false**
+### 2.7 Crash配置(配置Crashlytics Gradle plugin)
+```  
+//（在项目的build.gradle添加）
+classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
+```
+```  
+//（在app的build.gradle plugins添加）
+id 'com.google.firebase.crashlytics'
+```
 ## 3.登陆
 
 ### 3.1登陆界面

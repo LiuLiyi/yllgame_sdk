@@ -25,13 +25,14 @@ SDK下载地址(请联系对接人获取)
 
 #### 2. 在podfile文件中添加以下依赖库
 ```obj-c
-  pod 'Firebase/Analytics', '~> 6.34.0'
-  pod 'Firebase/Messaging', '~> 6.34.0'
-  pod 'FBSDKLoginKit', '~> 12.3.2'
-  pod 'FBSDKShareKit', '~> 12.3.2'
-  pod 'AppsFlyerFramework', '~> 6.2.5'
-  pod 'GoogleSignIn', '~> 5.0.2'
-  pod 'AliyunOSSiOS', '~> 2.10.12'
+  pod 'FBSDKLoginKit', '12.3.2'
+  pod 'FBSDKShareKit', '12.3.2'
+  pod 'AppsFlyerFramework', '6.2.5'
+  pod 'Firebase/Analytics', '8.13.0'
+  pod 'Firebase/Crashlytics', '8.13.0'
+  pod 'Firebase/Messaging', '8.13.0'
+  pod 'GoogleSignIn', '5.0.2'
+  pod 'AliyunOSSiOS', '2.10.11'
 ```
 
 
@@ -117,8 +118,13 @@ SDK下载地址(请联系对接人获取)
 3. 在 [CFBundleURLSchemes] 键内的 <array><string> 中，将 [REVERSED_CLIENT_ID] 替换为反向的客户ID
 4. 在 CLIENT_ID 键内的 <string> 中，将 [CLIENT_ID] 替换为客户端ID
 5. 在 REVERSED_CLIENT_ID 键内的 <string> 中，将 [REVERSED_CLIENT_ID] 替换为反向的客户ID
+  
+#### 6. Firebase Crashlytics接入
+1. 确定 Podfile 已添加 pod 'Firebase/Crashlytics', '8.13.0', 且已经执行 pod install
+2. 在工程的相对应的 `Targets` -> `Build Settings` 搜索 `debug information format` ，将 Debug 和 Release 都设为 `DWARF with dSYM File`
+3. 在工程的相对应的 `Targets` -> `Build Phases`, 添加 `New Run Script Phase` ，添加 `"${PODS_ROOT}/FirebaseCrashlytics/run"`，在当前的 Run Script 的Input Files下，添加 `${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}` `$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)`
 
-#### 6. SDK所需权限
+#### 7. SDK所需权限
 - 相册权限 Privacy - Photo Library Usage Description
 - IDFA权限 Privacy - Tracking Usage Description
 - Privacy - Location Always and When In Use Usage Description 地理位置权限

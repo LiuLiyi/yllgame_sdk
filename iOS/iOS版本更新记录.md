@@ -9,7 +9,7 @@
 6. 新增定位权限 (具体请查阅 iOS接入文档 -> 2.2 项目配置 -> 7. SDK所需权限)
 7. 移除pod 'Bugly', '~> 2.5.90', SDK移除YllGameSDK文件下的buglyAppId属性, 工程移除shell脚本(具体路径: 对应工程target->Build Phases->Run Script)
 8. 新增土耳其语, 语言简称 "tr"
-9. 'Firebase/Analytics' 和 'Firebase/Messaging' 版本升级, 从 v6.34.0 提升至 v8.13.0
+9. 'Firebase/Analytics' 和 'Firebase/Messaging' Pod 版本升级, 从 v6.34.0 提升至 v8.13.0
 10. SDK内部优化
 
 - v1.0.5

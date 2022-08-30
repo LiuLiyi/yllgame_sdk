@@ -509,7 +509,7 @@ public class MyHmsMessageService extends HmsMessageService {
         LogUtils.logEForDeveloper("收到消息：" + remoteMessage.getData());
         if (!YGMessageApi.getInstance().handlePushMessage(remoteMessage))
             LogUtils.logEForDeveloper("游戏内部消息");
-        super.onMessageReceived(remoteMessage);
+        super.onMessageReceived(remoteMessage); 
     }
 }
 ```

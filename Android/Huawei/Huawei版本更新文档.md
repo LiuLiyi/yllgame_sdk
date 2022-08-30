@@ -15,11 +15,7 @@
  annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
  ```
 8. 新增华为推送
-9. 移除Bugly新增FireBase crash 
-```
-api 'com.google.firebase:firebase-crashlytics'
-api 'com.google.firebase:firebase-crashlytics-ndk'
-```
+9. 移除Bugly
 ### SDK版本1.0.5
 1. 新增展示手机号绑定页面(4.2.2展示手机号绑定页面)
 ###  SDK版本1.0.4.3

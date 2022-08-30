@@ -37,11 +37,6 @@
     api 'com.facebook.android:facebook-login:13.0.0'
     //Facebook分享
     api 'com.facebook.android:facebook-share:13.0.0'
-    //Google登陆依赖库 必须添加
-    api 'com.google.android.gms:play-services-auth:19.0.0'
-    api "com.google.android.gms:play-services-ads-identifier:17.0.0"
-    //Google支付依赖库 必须添加
-    api "com.android.billingclient:billing:4.0.0"
     //数据库依赖库 必须添加
     def room_version = "2.2.5"
     api "androidx.room:room-runtime:$room_version"
@@ -53,7 +48,6 @@
     api 'com.android.installreferrer:installreferrer:2.2'
     //FCM 推送相关
     api platform('com.google.firebase:firebase-bom:26.4.0')
-    api 'com.google.firebase:firebase-messaging'
     api 'com.google.firebase:firebase-analytics'
     api 'com.google.firebase:firebase-core:16.0.1'
     api 'com.aliyun.dpa:oss-android-sdk:2.9.9'
@@ -67,9 +61,6 @@
     //图片加载库
     api 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
-    //Crash
-    api 'com.google.firebase:firebase-crashlytics'
-    api 'com.google.firebase:firebase-crashlytics-ndk'
  ```
 
 ## 2.项目配置，初始化
@@ -216,15 +207,6 @@ public class YGReceiver extends BroadcastReceiver {
 ### 2.6 设置allowBackup配置
 ``` android:allowBackup="false" ```</br>
 **注：新生成的项目allowBackup为true须在项目的AndroidManifest中application设置allowBackup为false**
-### 2.7 Crash配置(配置Crashlytics Gradle plugin)
-```  
-//（在项目的build.gradle添加）
-classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
-```
-```  
-//（在app的build.gradle plugins添加）
-id 'com.google.firebase.crashlytics'
-```
 ## 3.登陆
 
 ### 3.1登陆界面

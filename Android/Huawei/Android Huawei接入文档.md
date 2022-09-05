@@ -752,12 +752,9 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
 代码示例
 ``` java 
 
-    private void start() {
-        if (YGTripartiteApi.getInstance().checkCropPermission(this))
-            startUpload();
-        else
-            YGTripartiteApi.getInstance().requestCropPermissions(this);
-    }
+    if (YGTripartiteApi.getInstance().hasStoragePermission(this, 12345)) {
+                    startUpload();
+                }
 
     private void startUpload() {
         YGTripartiteApi.getInstance().updatePicture(this, new YGCallBack<String>() {
@@ -771,12 +768,15 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
         });
     }
 
-    @Override
+        @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == YGConstants.CAMERA_CROP_PERMISSION) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == 12345) {
+            if (grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 startUpload();
+            } else {
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0]) || !ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[1]))
+                    YGTripartiteApi.getInstance().goToAppSetting(this);
             }
         }
     }

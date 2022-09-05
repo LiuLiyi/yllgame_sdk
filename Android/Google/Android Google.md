@@ -714,21 +714,13 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
 文件读写权限获取：
 ``` java 
     /**
-     * 检查是否拥有打开裁剪所需的所有权限
+     * 请求存储权限代码
      *
-     * @param context 上下文
-     * @return true：已拥有，false：存在未拥有的权限
+     * @param activity
+     * @param requestCode 请求的requestCode
+     * @return 有权限返回true 反之false
      */
-    public boolean checkCropPermission(Context context)
-```
-``` java 
-    /**
-     * 申请裁剪所需权限
-     * 申请回调请通过传入的activity中的{@link android.app.Activity#onRequestPermissionsResult}方法判断
-     *
-     * @param activity activity
-     */
-    public void requestCropPermissions(Activity activity)
+    public boolean hasStoragePermission(Activity activity, int requestCode)
 ```
 - 阿里云上传图片的函数为：`` YGTripartiteApi.getInstance().updatePicture ``
 ``` java 
@@ -747,12 +739,9 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
 代码示例
 ``` java 
 
-    private void start() {
-        if (YGTripartiteApi.getInstance().checkCropPermission(this))
-            startUpload();
-        else
-            YGTripartiteApi.getInstance().requestCropPermissions(this);
-    }
+    if (YGTripartiteApi.getInstance().hasStoragePermission(this, 12345)) {
+                    startUpload();
+                }
 
     private void startUpload() {
         YGTripartiteApi.getInstance().updatePicture(this, new YGCallBack<String>() {
@@ -768,12 +757,15 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
         });
     }
 
-    @Override
+@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == YGConstants.CAMERA_CROP_PERMISSION) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == 12345) {
+            if (grantResults.length == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 startUpload();
+            } else {
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0]) || !ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[1]))
+                    YGTripartiteApi.getInstance().goToAppSetting(this);
             }
         }
     }

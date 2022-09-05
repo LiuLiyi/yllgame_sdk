@@ -743,7 +743,6 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
 ```
 代码示例
 ``` java 
-
     if (YGTripartiteApi.getInstance().hasStoragePermission(this, 12345)) {
                     startUpload();
                 }

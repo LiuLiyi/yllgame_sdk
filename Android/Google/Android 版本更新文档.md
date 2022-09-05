@@ -16,6 +16,7 @@
 api 'com.google.firebase:firebase-crashlytics'
 api 'com.google.firebase:firebase-crashlytics-ndk'
 ```
+9.新增图片上传权限
 ### SDK版本1.0.5
 1. 新增展示手机号绑定页面(4.2.2展示手机号绑定页面)
 ###  SDK版本1.0.4.3

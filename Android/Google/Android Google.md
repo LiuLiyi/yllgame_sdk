@@ -219,12 +219,14 @@ classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
 id 'com.google.firebase.crashlytics'
 
 android{
+buildTypes {
 release{
             firebaseCrashlytics {
+            //每次打包前 需要运行uploadCrashlyticsSymbolFileRelease任务
                 nativeSymbolUploadEnabled true
-//                strippedNativeLibsDir 'build/intermediates/stripped_native_libs/debug/out/lib'
                 unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/debug/out/lib'
             }}
+            }
 }
 ```
 ## 3.登陆

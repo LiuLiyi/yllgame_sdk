@@ -41,7 +41,7 @@
     def room_version = "2.2.5"
     api "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-    api "net.zetetic:android-database-sqlcipher:4.4.2"
+    api "net.zetetic:android-database-sqlcipher:4.5.2"
     //数据统计依赖库 必须添加
     api 'com.appsflyer:af-android-sdk:6.2.3@aar'
     api 'com.appsflyer:oaid:6.2.4'

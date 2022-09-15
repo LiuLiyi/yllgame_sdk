@@ -217,7 +217,6 @@ classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
 ```  
 //（在app的build.gradle plugins添加）
 id 'com.google.firebase.crashlytics'
-
 android{
 buildTypes {
 release{
@@ -225,8 +224,9 @@ release{
             //每次打包前 需要运行uploadCrashlyticsSymbolFileRelease任务
                 nativeSymbolUploadEnabled true
                 unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/debug/out/lib'
-            }}
             }
+        }
+    }
 }
 ```
 ## 3.登陆

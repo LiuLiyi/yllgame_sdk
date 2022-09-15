@@ -217,6 +217,15 @@ classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
 ```  
 //（在app的build.gradle plugins添加）
 id 'com.google.firebase.crashlytics'
+
+android{
+release{
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+//                strippedNativeLibsDir 'build/intermediates/stripped_native_libs/debug/out/lib'
+                unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/debug/out/lib'
+            }}
+}
 ```
 ## 3.登陆
 

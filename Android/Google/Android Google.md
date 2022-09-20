@@ -239,7 +239,7 @@ android{
 ##### 2、点开当前app的Tasks>build>assemble 点击运行，注意观看控制台Run输出
 **BUILD SUCCESSFUL in 3m 28s\
 Build Analyzer results available\
-Task execution finished 'assemble'.\则代表执行完成**
+Task execution finished 'assemble'.则代表执行完成**
 
 ##### 3、点开当前app的Tasks>firebase crashlytics>uploadCrashlyticsSymbolFile(需要打包debug则上传uploadCrashlyticsSymbolFileDebug，需要打包release则上传uploadCrashlyticsSymbolFileRelease) 点击运行，注意观看控制台Run输出
 **Task :hello_world:generateCrashlyticsSymbolFileDebug\

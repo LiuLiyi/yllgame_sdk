@@ -250,7 +250,6 @@ Build Analyzer results available\
 Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上传成功**
 ![QQ截图20220920143805](https://user-images.githubusercontent.com/19358621/191185208-a8193098-d146-4e8c-a319-96b1ed041a68.png)
 
-
 ## 3.登陆
 
 ### 3.1登陆界面

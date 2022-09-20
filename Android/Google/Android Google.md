@@ -209,7 +209,8 @@ public class YGReceiver extends BroadcastReceiver {
 ### 2.6 设置allowBackup配置
 ``` android:allowBackup="false" ```</br>
 **注：新生成的项目allowBackup为true，须在项目的AndroidManifest中application设置allowBackup为false**
-### 2.7 Crash配置(配置Crashlytics Gradle plugin)
+### 2.7 Firebase Crash配置
+#### 配置Crashlytics Gradle plugin
 ```  
 //（在项目的build.gradle添加）
 classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
@@ -218,17 +219,24 @@ classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
 //（在app的build.gradle plugins添加）
 id 'com.google.firebase.crashlytics'
 android{
-buildTypes {
-release{
+    ...
+   buildTypes {
+        release{
+            ...
             firebaseCrashlytics {
-            //每次打包前 需要运行uploadCrashlyticsSymbolFileRelease任务
+                //每次打包前 需要运行uploadCrashlyticsSymbolFileRelease任务
                 nativeSymbolUploadEnabled true
+                //打包前检查改路劲是否有so文件
                 unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/debug/out/lib'
             }
         }
     }
 }
 ```
+**1、运行Android studio右侧Gradle工具栏
+2、点开当前app的Tasks>build>assemble 点击运行，注意观看控制台Run输出BUILD SUCCESSFUL in 3m 28s>Build Analyzer results available> Task execution finished 'assemble'.则代表执行完成
+3、点开当前app的Tasks>firebase crashlytics>uploadCrashlyticsSymbolFile(需要打包debug则上传uploadCrashlyticsSymbolFileDebug，需要打包release则上传uploadCrashlyticsSymbolFileRelease) 点击运行，注意观看控制台Run输出> Task :hello_world:generateCrashlyticsSymbolFileDebug>> Task :hello_world:processDebugGoogleServices UP-TO-DATE>> Task :hello_world:uploadCrashlyticsSymbolFileDebug>BUILD SUCCESSFUL in 3m 28s>Build Analyzer results available> Task execution finished 'assemble'.则代表符号表上传成功
+**
 ## 3.登陆
 
 ### 3.1登陆界面

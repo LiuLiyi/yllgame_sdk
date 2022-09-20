@@ -233,10 +233,22 @@ android{
     }
 }
 ```
-**1、运行Android studio右侧Gradle工具栏
-2、点开当前app的Tasks>build>assemble 点击运行，注意观看控制台Run输出BUILD SUCCESSFUL in 3m 28s>Build Analyzer results available> Task execution finished 'assemble'.则代表执行完成
-3、点开当前app的Tasks>firebase crashlytics>uploadCrashlyticsSymbolFile(需要打包debug则上传uploadCrashlyticsSymbolFileDebug，需要打包release则上传uploadCrashlyticsSymbolFileRelease) 点击运行，注意观看控制台Run输出> Task :hello_world:generateCrashlyticsSymbolFileDebug>> Task :hello_world:processDebugGoogleServices UP-TO-DATE>> Task :hello_world:uploadCrashlyticsSymbolFileDebug>BUILD SUCCESSFUL in 3m 28s>Build Analyzer results available> Task execution finished 'assemble'.则代表符号表上传成功
-**
+#### 上传符号表
+##### 1、运行Android studio右侧Gradle工具栏
+
+##### 2、点开当前app的Tasks>build>assemble 点击运行，注意观看控制台Run输出
+**BUILD SUCCESSFUL in 3m 28s\
+Build Analyzer results available\
+Task execution finished 'assemble'.\则代表执行完成**
+
+##### 3、点开当前app的Tasks>firebase crashlytics>uploadCrashlyticsSymbolFile(需要打包debug则上传uploadCrashlyticsSymbolFileDebug，需要打包release则上传uploadCrashlyticsSymbolFileRelease) 点击运行，注意观看控制台Run输出
+**Task :hello_world:generateCrashlyticsSymbolFileDebug\
+Task :hello_world:processDebugGoogleServices UP-TO-DATE\
+Task :hello_world:uploadCrashlyticsSymbolFileDebug\
+BUILD SUCCESSFUL in 3m 28s\
+Build Analyzer results available\
+Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上传成功**
+
 ## 3.登陆
 
 ### 3.1登陆界面

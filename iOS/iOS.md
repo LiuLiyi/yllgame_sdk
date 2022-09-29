@@ -4,15 +4,17 @@ SDK下载地址(请联系对接人获取)
 
 Xcode环境配置
 
-需要安装cocoapods管理工具([参考](https://www.kancloud.cn/god-is-coder/cocoapods/617031))
+IDE: Xcode14.0+ 
 
-IDE: Xcode14.0+, 支持系统: iOS10.0+
+SDK支持系统: iOS10.0+
 
-SDK不支持`bitcode`，项目请勿打开(Xcode14.0+已移除 `bitcode`选项, 无需要操作)
+SDK支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 
-SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
+SDK支持架构: arm64
 
-SDK仅支持 arm64 架构
+SDK不支持`bitcode`，项目请勿打开(Xcode14.0+已移除 `bitcode`选项)
+
+SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-coder/cocoapods/617031))
 
 ## 1. iOS项目配置
 

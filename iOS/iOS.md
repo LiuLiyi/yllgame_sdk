@@ -2,24 +2,24 @@
 
 SDK下载地址(请联系对接人获取)
 
-## 1.接入前环境配置
+Xcode环境配置
 
-**需要安装cocoapods管理工具([参考](https://www.kancloud.cn/god-is-coder/cocoapods/617031))**
+需要安装cocoapods管理工具([参考](https://www.kancloud.cn/god-is-coder/cocoapods/617031))
 
-**Xcode13.0+, iOS10.0+**
+IDE: Xcode14.0+, 支持系统: iOS10.0+
 
-**SDK不支持bitcode，项目请勿打开**
+SDK不支持bitcode，项目请勿打开
 
-**SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)**
+SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 
-## 2.iOS项目修改
+## 1. iOS项目配置
 
-### 2.1添加资源
+### 1.1添加资源
 
 - 将 iOS 目录下的 YllGameSDK.framework 文件夹拷贝到项目中正确目录下
 - 右键项目，选择 Add File to "XXX"，选择刚才添加的framework，勾选 "Copy items if needed"，选择 "Create groups"，targets勾选mobile
 
-### 2.2配置项目
+### 1.2配置项目
 
 #### 1. cd 到 xxx.xcodeproj 目录下，pod init 创建pod管理文件
 
@@ -134,9 +134,9 @@ SDK下载地址(请联系对接人获取)
 - Privacy - Location When In Use Usage Description 地理位置权限
 - 权限的具体描述请根据游戏的实际使用进行定义，如果游戏没有使用，可以向SDK方要通用的阿语描述
 
-## 3. SDK初始化与API接口
+## 2. SDK初始化
 
-### 3.1 SDK初始化
+### 2.1 SDK初始化
 
 - 在`AppDelegate.m`中添加头文件引用
 
@@ -194,8 +194,18 @@ SDK下载地址(请联系对接人获取)
     [[YllGameSDK getInstance] yg_applicationWillTerminate:application];
 }
 ```
+  
+### 2.2 设置SDK语言
 
-### 3.2 登陆与回调
+```obj-c
+// languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 该集合默认第一个是SDK的默认语言
+[YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
+// 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
+[YllGameSDK getInstance].localLanguage = @"ar";
+```
+  
+## 3. SDK API接口
+### 3.1 登陆与回调
   
 - SDK为游戏方提供了两种登录获取账号信息方式，即代理和闭包，本文档的登录是用闭包，如需使用代理，请自行跳转到YllGameSDK.h文件进行查阅 
 - 在项目中需要进行登录操作的xxx.h或xxx.m文件中导入 #import <YllGameSDK/YllGameSDK.h>
@@ -219,6 +229,8 @@ SDK下载地址(请联系对接人获取)
         YGAccountBlock,   // 账号被封
         YGAccountRemote,  // 异地登录
         YGLogout,         // 退出登录
+        YGAccountExpired, // 账号登录时效过期
+        YGAccountCancel,  // 账号注销
     };
     */
  }];
@@ -226,7 +238,7 @@ SDK下载地址(请联系对接人获取)
 - 修改昵称成功(YGChangeNickName)是SDK账户体系的昵称修改，如果不使用，可以忽略
 - 退出登录(YGLogout)或者token过期(YGTokenOverdue)游戏方要退出到登陆界面并且清除本地用户信息，再调用登录函数
   
-### 3.3 游客静默登陆与回调
+### 3.2 游客静默登陆与回调
   
 - SDK为游戏方提供了两种游客静默登录获取账号信息方式，即代理和闭包，本文档的登录是用闭包，如需使用代理，请自行跳转到YllGameSDK.h文件进行查阅 
 - 在项目中需要进行登录操作的xxx.h或xxx.m文件中导入 #import <YllGameSDK/YllGameSDK.h>
@@ -250,6 +262,8 @@ SDK下载地址(请联系对接人获取)
         YGAccountBlock,   // 账号被封
         YGAccountRemote,  // 异地登录
         YGLogout,         // 退出登录
+        YGAccountExpired, // 账号登录时效过期
+        YGAccountCancel,  // 账号注销
     };
     */
  }];
@@ -257,7 +271,7 @@ SDK下载地址(请联系对接人获取)
 - 修改昵称成功(YGChangeNickName)是SDK账户体系的昵称修改，如果不使用，可以忽略
 - 退出登录(YGLogout)或者token过期(YGTokenOverdue)游戏方要退出到登陆界面并且清除本地用户信息，再调用登录函数
 
-### 3.4 同步角色与回调
+### 3.3 同步角色与回调
 - 在获取SDK用户信息之后，需要调用此方法，否则会影响内购的补单操作
 - 在游戏使用中，此函数中的任意参数发生变化，都需要调用此函数，进行数据同步
 ```obj-c
@@ -276,7 +290,7 @@ SDK下载地址(请联系对接人获取)
 }];
 ```
 
-### 3.5 内购充值与回调
+### 3.4 内购充值与回调
   
 - 使用SDK充值功能，需要先登录获取SDK的用户信息(文档3.2或3.3)且同步角色(文档3.4)成功之后
 - SDK对内购支付中出现的任何报错进行了弹窗提示，游戏方也可以从返回的失败回调内拿到具体的错误信息
@@ -297,7 +311,7 @@ SDK下载地址(请联系对接人获取)
         <#code#>
 }];
 ```
-### 3.6 订阅充值与回调
+### 3.5 订阅充值与回调
   
 - 使用SDK订阅功能，需要先登录获取SDK的用户信息(文档3.2或3.3)且同步角色(文档3.4)成功之后
 - SDK对内购支付中出现的任何报错进行了弹窗提示，游戏方也可以从返回的失败回调内拿到具体的错误信息
@@ -318,14 +332,14 @@ SDK下载地址(请联系对接人获取)
 }];
 ```
 
-### 3.7 打开登录页面
+### 3.6 打开登录页面
 
 ```obj-c
 /// 展示登录页面
 [[YllGameSDK getInstance] yg_showLoginView];
 ```
 
-### 3.8 打开SDK设置界面
+### 3.7 打开SDK设置界面
       
 - 使用SDK设置界面，需要先登录获取SDK的用户信息(文档3.2或3.3)且同步角色(文档3.4)成功之后
 
@@ -336,7 +350,7 @@ SDK下载地址(请联系对接人获取)
 [[YllGameSDK getInstance] yg_showSettingsViewWithRoleId:<#(nonnull NSString *)#> gameServerId:<#(nonnull NSString *)#>];
 ```
 
-### 3.9 打开修改昵称界面
+### 3.8 打开修改昵称界面
           
 - 使用SDK修改昵称界面，需要先登录获取SDK的用户信息(文档3.2或3.3)且同步角色(文档3.4)成功之后
 
@@ -345,7 +359,7 @@ SDK下载地址(请联系对接人获取)
 [[YllGameSDK getInstance] yg_showNicknameView];
 ```
 
-### 3.10 打开用户管理界面
+### 3.9 打开用户管理界面
           
 - 使用SDK用户管理界面，需要先登录获取SDK的用户信息(文档3.2或3.3)且同步角色(文档3.4)成功之后
 
@@ -354,23 +368,14 @@ SDK下载地址(请联系对接人获取)
 [[YllGameSDK getInstance] yg_showAccountManagementView];
 ```
 
-### 3.11 检查账号绑定
+### 3.10 检查账号绑定
 
 ```obj-c
 /// 检查游客账号是否绑定第三方账号, true == 绑定, false == 未绑定
 - (BOOL)yg_checkBindState;
 ```
 
-### 3.12 设置SDK语言
-
-```obj-c
-// languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 该集合默认第一个是SDK的默认语言
-[YllGameSDK getInstance].languageList = @[@"ar", @"en"];
-// 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
-[YllGameSDK getInstance].localLanguage = @"ar";
-```
-
-### 3.13 自定义埋点
+### 3.11 自定义埋点
           
 - SDK提供埋点功能, 分别上报到YallaGame, Firebase、Facebook和Appflyer 数据平台
 ```obj-c
@@ -388,13 +393,13 @@ SDK下载地址(请联系对接人获取)
 
 eventName和params参照[YllSDK iOS埋点](https://github.com/yllgame2021/yllgamesdk/blob/master/%E5%9F%8B%E7%82%B9%E9%9C%80%E6%B1%82/IOS/%E7%BB%9F%E8%AE%A1%E5%9F%8B%E7%82%B9IOS.md)
 
-### 3.14 获取推送token
+### 3.12 获取推送token
 
 ```obj-c
 [[YllGameSDK getInstance] yg_getPushToken:<#^(NSString * _Nullable, NSError * _Nullable)pushToken#>];
 ```
 
-### 3.15 推送处理
+### 3.13 推送处理
 
 - 推送分为SDK推送和游戏方推送，区分两者的方法在于主要在于返回的消息字典(userInfo)内是否含有 YllGameSDKMsgId 这个key，包含该key表明是SDK推送，游戏方可不用处理该条推送.
 
@@ -411,21 +416,21 @@ eventName和params参照[YllSDK iOS埋点](https://github.com/yllgame2021/yllgam
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler { }
 ```
 
-### 3.16 获取SDK版本
+### 3.14 获取SDK版本
 
 ```obj-c
 // 调用该方法, 在控制台显示当前SDK的版本信息
 NSString *SDKVersion = [[YllGameSDK getInstance] yg_getSDKVersion];
 ```
 
-### 3.17 获取SDKBuild
+### 3.15 获取SDKBuild
 
 ```obj-c
 // 调用该方法, 在控制台显示当前SDK的版本信息
 NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```
 
-### 3.18 检查SDK版本(非必要)
+### 3.16 检查SDK版本(非必要)
 - 此方法只是在控制台打印当前SDK的版本和最新的SDK版本
 
 ```obj-c
@@ -433,7 +438,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_checkSDKVersion];
 ```
           
-### 3.19 设置SDK网络模式
+### 3.17 设置SDK网络模式
 - 提供了 YGStrongNet 和 YGWeakNet 两种网络模式, SDK 默认为 YGStrongNet
 - 当设置为 YGWeakNet 模式, 在 SDK 登录且同步角色未成功 或 无网络情况下, SDK 除登录页面以外的功能将受到限制使用
 
@@ -441,7 +446,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [YllGameSDK getInstance].netMode = YGStrongNet;
 ```
           
-### 3.20 Facebook 分享
+### 3.18 Facebook 分享
 - 提供了 链接 和 图片 两种分享, 并返回了 成功/取消/失败 相对应的回调
 
 ```obj-c
@@ -465,14 +470,14 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 }];
 ```
       
- ### 3.21 获取 Facebook 好友列表
+ ### 3.19 获取 Facebook 好友列表
 - 提供了返回共同登录该应用的 facebook 好友列表接口
 
 ```obj-c
 [[YllGameSDK getInstance] yg_getFacebookFriendsWithCompleteHandler:<#^(NSArray<YGFBFriendInfoModel *> * _Nonnull)completeHandler#>];
 ```
 
- ### 3.22 打开举报页面
+ ### 3.20 打开举报页面
 - 提供举报用户页面
       
 ```obj-c
@@ -483,13 +488,13 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showReportViewWithRoportRoleId:<#(nonnull NSString *)#> reportedRoleId:<#(nonnull NSString *)#> gameServerId:<#(nonnull NSString *)#>];
 ```
 
- ###  3.23 补单成功回调
+ ###  3.21 补单成功回调
 - 提供补单成功回调, 返回游戏方订单id
 ```obj-c
 [[YllGameSDK getInstance] yg_orderReplenishmentSuccessHandler:<#^(NSString * _Nonnull)successHandler#>];
 ```
         
-### 3.24 打开展示房间/房间用户举报页面
+### 3.22 打开展示房间/房间用户举报页面
 - 提供展示房间/房间用户举报功能
       
 ```obj-c
@@ -503,7 +508,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showRoomReportViewWithReportTarget:<#(nonnull NSString *)#> fromGameServerId:<#(nonnull NSString *)#> fromRoleId:<#(nonnull NSString *)#> toGameServerId:<#(nonnull NSString *)#> toRoleId:<#(nonnull NSString *)#> toRoomId:<#(nonnull NSString *)#>];
 ```
 
-### 3.25 上传图片
+### 3.23 上传图片
 - 提供打开相册并上传图片, 返回图片地址
       
 ```obj-c
@@ -512,7 +517,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_updatePictureWithAlbumSelectedType:<#(YGAlbumSelectedType)#> successBlock:<#^(NSString * _Nullable imageUrl)successBlock#> failedBlock:<#^(NSString * _Nullable error)failedBlock#>];
 ```
 
-### 3.26 获取活动信息
+### 3.24 获取活动信息
 - 提供获取活动信息接口, 返回活动信息数组
       
 ```obj-c
@@ -522,7 +527,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_getActivityInfosWithRoleId:<#(nonnull NSString *)#> gameServerId:<#(nonnull NSString *)#> completeHandler:<#^(NSArray<YGActivityModel *> * _Nullable)completeHandler#>];
 ```
 
-### 3.27 获取手机号绑定状态
+### 3.25 获取手机号绑定状态
 - 提供获取手机号绑定状态, 返回绑定结果
       
 ```obj-c
@@ -531,7 +536,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_getPhoneBindStateWithCompleteHandler:<#^(BOOL)completeHandler#>];
 ```
         
-### 3.28 跳转到facebook主页
+### 3.26 跳转到facebook主页
 - 提供跳转到指定用户的facebook主页功能
       
 ```obj-c
@@ -541,7 +546,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_openFacebookPageWithPageId:<#(nonnull NSString *)#> completeHandler:<#^(BOOL)completeHandler#>];
 ```
       
-### 3.29 展示账号绑定页面
+### 3.27 展示账号绑定页面
 - 显示账号绑定页面, 并返回当前账号所有的绑定信息模型
 
 ```obj-c
@@ -549,7 +554,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showAccountBindViewWithCompleteHandler:<#^(YGUserAcccountBindModel * _Nonnull)completeHandler#>];
 ```
       
-### 3.30 展示手机号绑定页面
+### 3.28 展示手机号绑定页面
 - 显示手机号绑定页面, 返回是否绑定成功的结果
       
 ```obj-c
@@ -557,7 +562,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showPhoneBindViewWithCompleteHandler:<#^(BOOL)completeHandler#>];
 ```
       
-### 3.31 展示举报消息页面
+### 3.29 展示举报消息页面
 - 展示普通消息举报页面
       
 ```obj-c
@@ -570,7 +575,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showReportCustomMsgViewWithServerId:<#(nonnull NSString *)#> reportRoleId:<#(nonnull NSString *)#> beReportRoleId:<#(nonnull NSString *)#> scene:<#(nonnull NSString *)#> chatMsgList:<#(nonnull NSArray<YGReprotModel *> *)#>];
 ```
       
-### 3.32 展示举报语聊房消息页面
+### 3.30 展示举报语聊房消息页面
 - 展示房间聊天消息举报页面
       
 ```obj-c
@@ -584,7 +589,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showReportChatRoomMsgViewWithRoomId:<#(nonnull NSString *)#> reportGameServerId:<#(nonnull NSString *)#> beReportGameServerId:<#(nonnull NSString *)#> reportRoleId:<#(nonnull NSString *)#> beReportRoleId:<#(nonnull NSString *)#> chatMsgList:<#(nonnull NSArray<YGReprotModel *> *)#>];
 ```
       
-### 3.33 展示网络检测页面
+### 3.31 展示网络检测页面
 - 网络检测功能页面, 提供一键复制检测结果功能
 - 该方法需要依赖 NetDiag.xcframework, 该 framework 需要找SDK方下载
 

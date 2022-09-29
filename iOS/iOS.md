@@ -144,20 +144,23 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 #import <YllGameSDK/YllGameSDK.h>
 ```
 
-- 在`AppDelegate.m`的`didFinishLaunchingWithOptions`方法中添加以下代码
+- 在`AppDelegate.m`的`didFinishLaunchingWithOptions`函数中添加以下代码
 ```obj-c
-// YllSDK-------Begin------gameAppId, appleAppId, appsFlyerDevKey这些参数需要联系游戏发行方获取，改为自己的！
-[YllGameSDK getInstance].gameAppId = @"";
-[YllGameSDK getInstance].appleAppId = @"";
-[YllGameSDK getInstance].appsFlyerDevKey = @"";
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // YllSDK-------Begin------gameAppId, appleAppId, appsFlyerDevKey这些参数需要联系游戏发行方获取，改为自己的！
+    [YllGameSDK getInstance].gameAppId = @"";
+    [YllGameSDK getInstance].appleAppId = @"";
+    [YllGameSDK getInstance].appsFlyerDevKey = @"";
     
-// 设置完以上属性之后再调用该方法, 不然对于语区统计会有影响
-[[YllGameSDK getInstance] yg_application:application didFinishLaunchingWithOptions:launchOptions];
-// 初始化SDK
-[[YllGameSDK getInstance] yg_init];
+    // 设置完以上属性之后再调用该方法, 不然对于语区统计会有影响
+    [[YllGameSDK getInstance] yg_application:application didFinishLaunchingWithOptions:launchOptions];
+    // 初始化SDK
+    [[YllGameSDK getInstance] yg_init];
+    return YES;
+}
 ```
 
-- 在`AppDelegate.m`中添加以下方法
+- 在`AppDelegate.m`中添加以下函数
 ```obj-c
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
     return [[YllGameSDK getInstance] yg_application:application openURL:url options:options];
@@ -215,7 +218,7 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 #import <YllGameSDK/YllGameSDK.h>
 ```
 
-- 在`ViewController.m`文件中，实现对应的方法
+- 在`ViewController.m`文件中，实现对应的函数
 ```
 [[YllGameSDK getInstance] yg_loginWithUserInfo:^(YGUserInfoModel * userInfoModel) {
     /** 
@@ -248,7 +251,7 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 #import <YllGameSDK/YllGameSDK.h>
 ```
 
-- 在`ViewController.m`文件中，实现对应的方法
+- 在`ViewController.m`文件中，实现对应的函数
 ```
 [[YllGameSDK getInstance] yg_silentGuestLoginWithUserInfo:^(YGUserInfoModel * userInfoModel) {
     /** 
@@ -273,7 +276,7 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 - 退出登录(YGLogout)或者token过期(YGTokenOverdue)游戏方要退出到登陆界面并且清除本地用户信息，再调用登录函数
 
 ### 3.3 同步角色与回调
-- 在获取SDK用户信息之后，需要调用此方法，否则会影响内购的补单操作
+- 在获取SDK用户信息之后，需要调用此函数，否则会影响内购的补单操作
 - 在游戏使用中，此函数中的任意参数发生变化，都需要调用此函数，进行数据同步
 ```obj-c
 /// 同步游戏角色(游戏登录之后必须调用)

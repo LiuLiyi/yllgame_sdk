@@ -146,17 +146,10 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 
 - 在`AppDelegate.m`的`didFinishLaunchingWithOptions`方法中添加以下代码
 ```obj-c
-//YllSDK-------Begin------gameAppId, appleAppId, buglyAppId, appsFlyerDevKey这些参数需要联系游戏发行方获取，改为自己的！
+// YllSDK-------Begin------gameAppId, appleAppId, appsFlyerDevKey这些参数需要联系游戏发行方获取，改为自己的！
 [YllGameSDK getInstance].gameAppId = @"";
 [YllGameSDK getInstance].appleAppId = @"";
-[YllGameSDK getInstance].buglyAppId = @"";
 [YllGameSDK getInstance].appsFlyerDevKey = @"";
-// languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 该集合默认第一个是SDK的默认语言
-[YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
-// 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
-[YllGameSDK getInstance].localLanguage = @"ar";
-// 设置SDK的网络模式, 默认是 YGStrongNet 强网模式
-[YllGameSDK getInstance].netMode = YGStrongNet;
     
 // 设置完以上属性之后再调用该方法, 不然对于语区统计会有影响
 [[YllGameSDK getInstance] yg_application:application didFinishLaunchingWithOptions:launchOptions];
@@ -202,6 +195,14 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 [YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
 // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
 [YllGameSDK getInstance].localLanguage = @"ar";
+```
+  
+### 2.3 设置SDK网络模式
+- 提供了 YGStrongNet 和 YGWeakNet 两种网络模式, SDK 默认为 YGStrongNet
+- 当设置为 YGWeakNet 模式, 在 SDK 登录且同步角色未成功 或 无网络情况下, SDK 除登录页面以外的功能将受到限制使用
+
+```obj-c
+[YllGameSDK getInstance].netMode = YGStrongNet;
 ```
   
 ## 3. SDK API接口
@@ -433,15 +434,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_checkSDKVersion];
 ```
           
-### 3.16 设置SDK网络模式
-- 提供了 YGStrongNet 和 YGWeakNet 两种网络模式, SDK 默认为 YGStrongNet
-- 当设置为 YGWeakNet 模式, 在 SDK 登录且同步角色未成功 或 无网络情况下, SDK 除登录页面以外的功能将受到限制使用
-
-```obj-c
-[YllGameSDK getInstance].netMode = YGStrongNet;
-```
-          
-### 3.17 Facebook 分享
+### 3.16 Facebook 分享
 - 提供了 链接 和 图片 两种分享, 并返回了 成功/取消/失败 相对应的回调
 
 ```obj-c
@@ -465,14 +458,14 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 }];
 ```
       
- ### 3.18 获取 Facebook 好友列表
+ ### 3.17 获取 Facebook 好友列表
 - 提供了返回共同登录该应用的 facebook 好友列表接口
 
 ```obj-c
 [[YllGameSDK getInstance] yg_getFacebookFriendsWithCompleteHandler:<#^(NSArray<YGFBFriendInfoModel *> * _Nonnull)completeHandler#>];
 ```
 
- ### 3.19 打开举报页面
+ ### 3.18 打开举报页面
 - 提供举报用户页面
       
 ```obj-c
@@ -483,13 +476,13 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showReportViewWithRoportRoleId:<#(nonnull NSString *)#> reportedRoleId:<#(nonnull NSString *)#> gameServerId:<#(nonnull NSString *)#>];
 ```
 
- ###  3.20 补单成功回调
+ ###  3.19 补单成功回调
 - 提供补单成功回调, 返回游戏方订单id
 ```obj-c
 [[YllGameSDK getInstance] yg_orderReplenishmentSuccessHandler:<#^(NSString * _Nonnull)successHandler#>];
 ```
         
-### 3.21 打开展示房间/房间用户举报页面
+### 3.20 打开展示房间/房间用户举报页面
 - 提供展示房间/房间用户举报功能
       
 ```obj-c
@@ -503,7 +496,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showRoomReportViewWithReportTarget:<#(nonnull NSString *)#> fromGameServerId:<#(nonnull NSString *)#> fromRoleId:<#(nonnull NSString *)#> toGameServerId:<#(nonnull NSString *)#> toRoleId:<#(nonnull NSString *)#> toRoomId:<#(nonnull NSString *)#>];
 ```
 
-### 3.22 上传图片
+### 3.21 上传图片
 - 提供打开相册并上传图片, 返回图片地址
       
 ```obj-c
@@ -512,7 +505,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_updatePictureWithAlbumSelectedType:<#(YGAlbumSelectedType)#> successBlock:<#^(NSString * _Nullable imageUrl)successBlock#> failedBlock:<#^(NSString * _Nullable error)failedBlock#>];
 ```
 
-### 3.23 获取活动信息
+### 3.22 获取活动信息
 - 提供获取活动信息接口, 返回活动信息数组
       
 ```obj-c
@@ -522,7 +515,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_getActivityInfosWithRoleId:<#(nonnull NSString *)#> gameServerId:<#(nonnull NSString *)#> completeHandler:<#^(NSArray<YGActivityModel *> * _Nullable)completeHandler#>];
 ```
 
-### 3.24 获取手机号绑定状态
+### 3.23 获取手机号绑定状态
 - 提供获取手机号绑定状态, 返回绑定结果
       
 ```obj-c
@@ -531,7 +524,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_getPhoneBindStateWithCompleteHandler:<#^(BOOL)completeHandler#>];
 ```
         
-### 3.25 跳转到facebook主页
+### 3.24 跳转到facebook主页
 - 提供跳转到指定用户的facebook主页功能
       
 ```obj-c
@@ -541,7 +534,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_openFacebookPageWithPageId:<#(nonnull NSString *)#> completeHandler:<#^(BOOL)completeHandler#>];
 ```
       
-### 3.26 展示账号绑定页面
+### 3.25 展示账号绑定页面
 - 显示账号绑定页面, 并返回当前账号所有的绑定信息模型
 
 ```obj-c
@@ -549,7 +542,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showAccountBindViewWithCompleteHandler:<#^(YGUserAcccountBindModel * _Nonnull)completeHandler#>];
 ```
       
-### 3.27 展示手机号绑定页面
+### 3.26 展示手机号绑定页面
 - 显示手机号绑定页面, 返回是否绑定成功的结果
       
 ```obj-c
@@ -557,7 +550,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showPhoneBindViewWithCompleteHandler:<#^(BOOL)completeHandler#>];
 ```
       
-### 3.28 展示举报消息页面
+### 3.27 展示举报消息页面
 - 展示普通消息举报页面
       
 ```obj-c
@@ -570,7 +563,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showReportCustomMsgViewWithServerId:<#(nonnull NSString *)#> reportRoleId:<#(nonnull NSString *)#> beReportRoleId:<#(nonnull NSString *)#> scene:<#(nonnull NSString *)#> chatMsgList:<#(nonnull NSArray<YGReprotModel *> *)#>];
 ```
       
-### 3.29 展示举报语聊房消息页面
+### 3.28 展示举报语聊房消息页面
 - 展示房间聊天消息举报页面
       
 ```obj-c
@@ -584,7 +577,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showReportChatRoomMsgViewWithRoomId:<#(nonnull NSString *)#> reportGameServerId:<#(nonnull NSString *)#> beReportGameServerId:<#(nonnull NSString *)#> reportRoleId:<#(nonnull NSString *)#> beReportRoleId:<#(nonnull NSString *)#> chatMsgList:<#(nonnull NSArray<YGReprotModel *> *)#>];
 ```
       
-### 3.30 展示网络检测页面
+### 3.29 展示网络检测页面
 - 网络检测功能页面, 提供一键复制检测结果功能
 - 该方法需要依赖 NetDiag.xcframework, 该 framework 需要找SDK方下载
 
@@ -595,7 +588,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_showNetCheckViewWithUserId:<#(NSString * _Nullable)#> roleId:<#(NSString * _Nullable)#>];
 ```
 
-### 3.31 获取用户消息数量变更通知
+### 3.30 获取用户消息数量变更通知
 
 ```obj-c
 /// 获取用户消息数量变更通知
@@ -604,7 +597,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 [[YllGameSDK getInstance] yg_getCustomerMsgWithRoleId:<#(nonnull NSString *)#> gameServerId:<#(nonnull NSString *)#> completeHandler:<#^(int msgNum)completeHandler#>];
 ```
       
-### 3.32 展示客服页面
+### 3.31 展示客服页面
 - 调用该函数前需先调用 `3.31 获取用户消息数量变更通知`
 ```obj-c
 /// 展示客服页面

@@ -2,7 +2,7 @@
 
 SDK下载地址(请联系对接人获取)
 
-- Xcode环境配置
+Xcode环境配置
 
 IDE: Xcode14.0+ 
 

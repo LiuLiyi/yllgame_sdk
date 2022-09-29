@@ -373,6 +373,8 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 - SDK提供埋点功能, 分别上报到YallaGame, Firebase、Facebook和Appflyer 数据平台
 ```obj-c
 // 上报到YallaGame
+[[YGEventManager getInstance] onEvent:<#(nonnull NSString *)#>];
+// 上报到YallaGame
 [[YGEventManager getInstance] onEvent:<#(nonnull NSString *)#> params:<#(NSDictionary * _Nullable)#>];
 // 上报到Firebase
 [[YGEventManager getInstance] onFirebaseEvent:<#(nonnull NSString *)#> params:<#(NSDictionary * _Nullable)#>];

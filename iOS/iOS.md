@@ -594,3 +594,20 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 /// @param roleId 游戏角色Id
 [[YllGameSDK getInstance] yg_showNetCheckViewWithUserId:<#(NSString * _Nullable)#> roleId:<#(NSString * _Nullable)#>];
 ```
+
+### 3.31 获取用户消息数量变更通知
+
+```obj-c
+/// 获取用户消息数量变更通知
+/// @param roleId 游戏角色Id
+/// @param gameServerId 角色所在区服Id
+[[YllGameSDK getInstance] yg_getCustomerMsgWithRoleId:<#(nonnull NSString *)#> gameServerId:<#(nonnull NSString *)#> completeHandler:<#^(int msgNum)completeHandler#>];
+```
+      
+### 3.32 展示客服页面
+
+```obj-c
+/// 展示客服页面
+[[YllGameSDK getInstance] yg_showCustomerView];
+```
+      

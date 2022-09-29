@@ -484,8 +484,9 @@ YGMessageApi.getInstance().handlePushMessage(remoteMessage);函数必须接入�
      * 获取版本
      */
     public void getVersionInfo()
- ```
- ###  AndroidManifest.xml
+ ```  
+### 3.16 Facebook 分享
+AndroidManifest.xml
 ``` xml
         <!--将 ContentProvider 添加至 AndroidManifest.xml 文件，并将 {APP_ID} 设置为您的应用编号：-->
         <provider
@@ -497,7 +498,6 @@ YGMessageApi.getInstance().handlePushMessage(remoteMessage);函数必须接入�
             <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
         </queries>
 ```
-### 3.16 Facebook 分享
 - Facebook分享链接的函数为：`` YGTripartiteApi.getInstance().shareLink ``
 ``` java 
     /**

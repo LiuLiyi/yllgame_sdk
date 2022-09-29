@@ -14,16 +14,16 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 
 ## 1. iOS项目配置
 
-### 1.1添加资源
+### 1.1. 添加资源
 
 - 将 iOS 目录下的 YllGameSDK.framework 文件夹拷贝到项目中正确目录下
 - 右键项目，选择 Add File to "XXX"，选择刚才添加的framework，勾选 "Copy items if needed"，选择 "Create groups"，targets勾选mobile
 
-### 1.2配置项目
+### 1.2 配置项目
 
-#### 1. cd 到 xxx.xcodeproj 目录下，pod init 创建pod管理文件
+#### 1.2.1 cd 到 xxx.xcodeproj 目录下，pod init 创建pod管理文件
 
-#### 2. 在podfile文件中添加以下依赖库
+#### 1.2.2 在podfile文件中添加以下依赖库
 ```obj-c
   pod 'FBSDKLoginKit', '12.3.2'
   pod 'FBSDKShareKit', '12.3.2'
@@ -41,15 +41,15 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 - 然后执行 pod install
 - 打开 [工程名].xcworkspace 文件
 
-#### 3. 配置Game Center、推送和内购配置
+#### 1.3 配置Game Center、推送和内购配置
 - 将`GoogleService-Info.plist`文件拖入项目，并配置以下选项
 
 ![配置](img/Signing&Capabilities.jpg)
 
-#### 4. Facebook 项目配置，使用包含应用数据的 XML 代码片段配置 Info.plist 文件([官网](https://developers.facebook.com/docs/facebook-login/ios/v2.2?locale=zh_CN))
+#### 1.4 Facebook 项目配置，使用包含应用数据的 XML 代码片段配置 Info.plist 文件([官网](https://developers.facebook.com/docs/facebook-login/ios/v2.2?locale=zh_CN))
 
-1. 右键点击 Info.plist，然后选择 Open As(打开方式) ▸ Source Code(源代码)
-2. 将下列 XML 代码片段复制并粘贴到文件正文中(<dict>...</dict>)
+1.4.1 右键点击 Info.plist，然后选择 Open As(打开方式) ▸ Source Code(源代码)
+1.4.2 将下列 XML 代码片段复制并粘贴到文件正文中(<dict>...</dict>)
 ```xml
 <key>CFBundleURLTypes</key>
 <array>
@@ -91,13 +91,13 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
     <string>fbshareextension</string>
 </array>
 ```
-3. 在 [CFBundleURLSchemes] 键内的 <array><string> 中，将 [APP_ID] 替换为应用编号
-4. 在 FacebookAppID 键内的 <string> 中，将 [APP_ID] 替换为应用编号
-5. 在 FacebookDisplayName 键内的 <string> 中，将 [APP_NAME] 替换为应用名称
+1.4.3 在 [CFBundleURLSchemes] 键内的 <array><string> 中，将 [APP_ID] 替换为应用编号
+1.4.4 在 FacebookAppID 键内的 <string> 中，将 [APP_ID] 替换为应用编号
+1.4.5 在 FacebookDisplayName 键内的 <string> 中，将 [APP_NAME] 替换为应用名称
   
-#### 5. Google 项目配置，使用包含应用数据的 XML 代码片段配置 Info.plist 文件([官网](https://developers.google.com/identity/sign-in/ios/start))
-1. 右键点击 Info.plist，然后选择 Open As(打开方式) ▸ Source Code(源代码)
-2. 将下列 XML 代码片段复制并粘贴到文件正文中(<dict>...</dict>)
+#### 1.5  Google 项目配置，使用包含应用数据的 XML 代码片段配置 Info.plist 文件([官网](https://developers.google.com/identity/sign-in/ios/start))
+1.5.1 右键点击 Info.plist，然后选择 Open As(打开方式) ▸ Source Code(源代码)
+1.5.2 将下列 XML 代码片段复制并粘贴到文件正文中(<dict>...</dict>)
 ```xml
 <key>CFBundleURLTypes</key>
 <array>
@@ -115,17 +115,17 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 <key>REVERSED_CLIENT_ID</key>
 <string>[REVERSED_CLIENT_ID]</string>
 ```
-3. 在 [CFBundleURLSchemes] 键内的 <array><string> 中，将 [REVERSED_CLIENT_ID] 替换为反向的客户ID
-4. 在 CLIENT_ID 键内的 <string> 中，将 [CLIENT_ID] 替换为客户端ID
-5. 在 REVERSED_CLIENT_ID 键内的 <string> 中，将 [REVERSED_CLIENT_ID] 替换为反向的客户ID
+1.5.3 在 [CFBundleURLSchemes] 键内的 <array><string> 中，将 [REVERSED_CLIENT_ID] 替换为反向的客户ID
+1.5.4 在 CLIENT_ID 键内的 <string> 中，将 [CLIENT_ID] 替换为客户端ID
+1.5.5 在 REVERSED_CLIENT_ID 键内的 <string> 中，将 [REVERSED_CLIENT_ID] 替换为反向的客户ID
   
-#### 6. Firebase Crashlytics 接入([官网](https://firebase.google.com/docs/crashlytics?hl=zh-cn))
-1. 确定 Podfile 已添加 pod 'Firebase/Crashlytics', '8.13.0', 且已经执行 pod install
-2. 在工程的相对应的 `Targets` -> `Build Settings` 搜索 `debug information format` ，将 Debug 和 Release 都设为 `DWARF with dSYM File`
-3. 在工程的相对应的 `Targets` -> `Build Phases`, 添加 `New Run Script Phase` ，添加 `"${PODS_ROOT}/FirebaseCrashlytics/run"`，在当前的 Run Script 的Input Files下，添加 `${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}` `$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)`
+#### 1.6 Firebase Crashlytics 接入([官网](https://firebase.google.com/docs/crashlytics?hl=zh-cn))
+1.6.1 确定 Podfile 已添加 pod 'Firebase/Crashlytics', '8.13.0', 且已经执行 pod install
+1.6.2 在工程的相对应的 `Targets` -> `Build Settings` 搜索 `debug information format` ，将 Debug 和 Release 都设为 `DWARF with dSYM File`
+1.6.3 在工程的相对应的 `Targets` -> `Build Phases`, 添加 `New Run Script Phase` ，添加 `"${PODS_ROOT}/FirebaseCrashlytics/run"`，在当前的 Run Script 的Input Files下，添加 `${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}` `$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)`
 ![配置](img/firebasecrash.png)
 
-#### 7. SDK所需权限
+#### 1.7 SDK所需权限
 - 相册权限 Privacy - Photo Library Usage Description
 - IDFA权限 Privacy - Tracking Usage Description
 - Privacy - Location Always and When In Use Usage Description 地理位置权限

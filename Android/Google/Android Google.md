@@ -250,9 +250,9 @@ Build Analyzer results available\
 Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上传成功**
 ![QQ截图20220920143805](https://user-images.githubusercontent.com/19358621/191185208-a8193098-d146-4e8c-a319-96b1ed041a68.png)
 
-## 3.登陆
+## 3.SDK Api接口
 
-### 3.1登陆界面
+### 3.1 登陆
 - SDK调起登陆函数：``` YGLoginApi.getInstance().login(); ```
 ``` java
     /**
@@ -262,7 +262,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
      */
     public void login(Activity activity)
 ```
-### 3.2 静默游客登录
+### 3.2 游客静默登陆
 - SDK调起静默游客登陆函数：``` YGLoginApi.getInstance().silentGuestLogin(); ```
 ``` java
     /**
@@ -270,29 +270,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
      */
     public void silentGuestLogin()
 ```
-## 4.用户
-### 4.1.1 管理界面
-- SDK调起用户管理界面的函数：``` YGUserApi.getInstance().openAccountManager(this) ```
-``` java 
-    /**
-     * 修改用户昵称
-     *
-     * @param activity
-     */
-    public void openAccountManager(Activity activity)
-```
-### 4.1.2 修改昵称
- - SDK调起修改昵称的函数：``` YGUserApi.getInstance().showUpdateNickNameDialog() ```
-``` java 
-    /**
-     * 修改用户昵称
-     *
-     * @param activity
-     * @param listener 修改昵称回调
-     */
-    public void showUpdateNickNameDialog(Activity activity, UpdateUserNameListener listener)
-```
-### 4.1.3 同步用户角色
+### 3.3 同步角色与回调
  - SDK调起同步用户角色的函数：``` YGUserApi.getInstance().syncRoleInfo(); ```
 ``` java 
     /**
@@ -315,167 +293,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
                              YGBooleanCallBack callback)
 ```
 **注：建议游戏每次登陆、角色创建、用户角色升级，用户VIP升级必须调用该函数**
-### 4.1.4检查SDK最新版本
-- SDK调起用户版本更新的函数为：`` YGUserApi.getInstance().getVersionInfo() ``
- ``` java 
-     /**
-     * 获取版本
-     */
-    public void getVersionInfo()
- ```
-### 4.1.5 设置界面
-- SDK调起设置界面的函数为：`` YGUserApi.getInstance().showSettingsView ``
-``` java
-    /**
-     * 设置界面
-     *
-     * @param activity  当前activity
-     * @param serviceId 角色服务器id
-     * @param roleId    角色id
-     */
-    public void showSettingsView(Activity activity, String serviceId, String roleId)
-```
-### 4.1.6展示绑定界面
-- SDK展示绑定界面的函数为：`` YGUserApi.getInstance().showAccountBindView ``
-  ``` java 
-     /**
-     * 展示绑定界面
-     *
-     * @param activity
-     */
-    public void showAccountBindView(Activity activity)
-  ```
-### 4.1.7账号升级提示
-- SDK调起账号升级的函数为：`` YGUserApi.getInstance().checkBindStat ``
-``` java 
-    /**
-     * 检查绑定状态 如果未绑定 则会显示账户绑定弹窗
-     *
-     * @param activity
-     * @return 是否绑定 true 绑定 false 未绑定
-     */
-    public boolean checkBindStat(Activity activity)
-```
-### 4.1.8游戏举报
-- SDK调起游戏举报的函数为：`` YGUserApi.getInstance().showReportView ``
-``` java 
-    /**
-     * 游戏举报
-     *
-     * @param activity       当前activity
-     * @param reportRoleId   举报者角色id
-     * @param reportedRoleId 被举报者角色id
-     * @param serviceId      角色服务器id
-     */
-    public void showReportView(Activity activity, String reportRoleId, String reportedRoleId, String serviceId)
-```
-### 4.1.9语聊举报
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showRoomReportView ``
-``` java 
-    /**
-     * 语聊举报
-     *
-     * @param activity          当前activity
-     * @param reportType        1房间 2角色
-     * @param reportRoleId      举报者角色id
-     * @param reportServiceId   举报者区服Id
-     * @param reportedRoleId    被举报者角色id
-     * @param reportedServiceId 被举举报者区服Id
-     * @param roomId            房间Id
-     */
-    public void showRoomReportView(Activity activity, String reportType, String reportRoleId, String reportServiceId, String reportedRoleId, String reportedServiceId, String roomId)
-```
-### 4.2.0 获取手机绑定状态
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().getPhoneBindState ``
-``` java 
-    /**
-     * 获取手机绑定状态
-     *
-     * @param callBack true 已绑定手机 false 未绑定手机
-     */
-    public void getPhoneBindState(YGBooleanCallBack callBack)
-```
-### 4.2.1 获取活动信息
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().getActivityInfos ``
-``` java 
-    /**
-     * 获取活动信息
-     *
-     * @param serviceId 服务器id
-     * @param roleId    角色id
-     * @param callBack  回调
-     */
-    public void getActivityInfos(String serviceId, String roleId, YGCallBack<List<GameActivityEntity>> callBack)
-```
-### 4.2.2 展示手机号绑定页面
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showPhoneBindView ``
-``` java 
-    /**
-     * 显示绑定界面
-     *
-     * @param activity          当前Activity
-     * @param ygBooleanCallBack true：绑定成功
-     */
-    public void showPhoneBindView(Activity activity, YGBooleanCallBack ygBooleanCallBack)
-```
-### 4.2.3 展示举报消息页面
-- SDK调起展示举报消息页面的函数为：`` YGUserApi.getInstance().showReportCustomMsgView ``
-``` java 
-
-    /**
-     * 展示举报消息页面
-     *
-     * @param activity       当前Activity
-     * @param gameServerId   区服id
-     * @param reportRoleId   举报者角色Id
-     * @param beReportRoleId 被举报者角色Id
-     * @param scene          场景（世界、联盟、私聊）根据游戏定
-     * @param chatMsgList    消息内容数据集合
-     *                       {"roleId":"消息发送者角色id",
-     *                       "roleName":"角色名称",
-     *                       "msgContent":"消息内容",
-     *                       "msgContent":"消息内容",
-     *                       "msgType":0 文本消息  1图片消息,
-     *                       "msgTime":"发送时间(时间戳到秒)",
-     *                       "isReport":1(是否为举报消息1是 0否)}
-     */
-    public void showReportCustomMsgView(Activity activity,
-                                        String gameServerId,
-                                        String reportRoleId,
-                                        String beReportRoleId,
-                                        String scene,
-                                        List<GameReportChatEntity> chatMsgList) 
-```
-### 4.2.4 展示举报语聊房消息页面
-- SDK调起展示举报语聊房消息页面的函数为：`` YGUserApi.getInstance().showReportChatRoomMsgView ``
-``` java 
-    /**
-     * 展示举报语聊房消息页面
-     *
-     * @param activity             当前Activity
-     * @param roomId               房间id
-     * @param reportGameServerId   举报者区服id
-     * @param beReportGameServerId 被举报者区服id
-     * @param reportRoleId         举报者角色Id
-     * @param beReportRoleId       被举报者角色Id
-     * @param chatMsgList          消息内容数据集合
-     *                             {"roleId":"消息发送者角色id",
-     *                             "roleName":"角色名称",
-     *                             "msgContent":"消息内容",
-     *                             "msgType":0 文本消息  1图片消息,
-     *                             "msgTime":"发送时间(时间戳到秒)",
-     *                             "isReport":1(是否为举报消息1是 0否)}
-     */
-    public void showReportChatRoomMsgView(Activity activity,
-                                          String roomId,
-                                          String reportGameServerId,
-                                          String beReportGameServerId,
-                                          String reportRoleId,
-                                          String beReportRoleId,
-                                          List<GameReportChatEntity> chatMsgList)
-```
-## 5.支付
-### 5.1 谷歌支付
+### 3.4 谷歌内购充值与回调
 - SDK调起谷歌支付的函数为：`` YGPayApi.pay() ``
 ``` java 
     /**
@@ -498,7 +316,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
                                         String number, String amount,
                                         String pointId, YGPaymentListener listener)
 ```
-### 5.1 谷歌订阅
+### 3.5 谷歌充值与回调
 - SDK调起谷歌支付的函数为：`` YGPayApi.paySubs() ``
 ``` java 
     /**
@@ -521,14 +339,103 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
                                         String number, String amount,
                                         String pointId, YGPaymentListener listener)
 ```
-注：支付和订阅需要角色信息和网络支持，如果没有登录，需要先调用登录（详情见模块三）并同步角色（4.3）
-## 6.推送
-### 6.1 配置Google 服务插件和导入google-service.json
+注：支付和订阅需要角色信息和网络支持，如果没有登录，需要先调用登录并同步角色
+### 3.6 打开SDK设置界面
+- SDK调起设置界面的函数为：`` YGUserApi.getInstance().showSettingsView ``
+``` java
+    /**
+     * 设置界面
+     *
+     * @param activity  当前activity
+     * @param serviceId 角色服务器id
+     * @param roleId    角色id
+     */
+    public void showSettingsView(Activity activity, String serviceId, String roleId)
+```
+### 3.7 打开修改昵称界面
+ - SDK调起修改昵称的函数：``` YGUserApi.getInstance().showUpdateNickNameDialog() ```
+``` java 
+    /**
+     * 修改用户昵称
+     *
+     * @param activity
+     * @param listener 修改昵称回调
+     */
+    public void showUpdateNickNameDialog(Activity activity, UpdateUserNameListener listener)
+```
+### 3.8 打开用户管理界面
+- SDK调起用户管理界面的函数：``` YGUserApi.getInstance().openAccountManager(this) ```
+``` java 
+    /**
+     * 修改用户昵称
+     *
+     * @param activity
+     */
+    public void openAccountManager(Activity activity)
+```
+### 3.9 检查账号绑定
+- SDK调起账号升级的函数为：`` YGUserApi.getInstance().checkBindStat ``
+``` java 
+    /**
+     * 检查绑定状态 如果未绑定 则会显示账户绑定弹窗
+     *
+     * @param activity
+     * @return 是否绑定 true 绑定 false 未绑定
+     */
+    public boolean checkBindStat(Activity activity)
+```
+### 3.10 自定义埋点
+- SDK提供埋点功能, 分别上报到YallaGame, Firebase、Facebook和Appflyer 数据平台
+``` java
+// 上报到YallaGame
+YGEventApi.onEvent()
+// 上报到Firebase
+YGEventApi.onFireBaseEvent(String eventName, Map params)
+// 上报到Facebook
+YGEventApi.onFacebookEvent(String eventName, Map params)
+// 上报到Appflyer
+YGEventApi.onAppsFlyerEvent(String eventName, Map params)
+// 上报到Firebase&Facebook&Appflyer事件方法
+YGEventApi.onThirdEvent(String eventName, Map params)
+```
+event_name分为游戏通用埋点和自定义埋点的事件名称
+通用事件埋点event_name 都需要按规定书写
+由YGEventConstants提供，列如YGEventConstants.YG_GAME_UPDATE_BEGIN
+
+自定义事件埋点event_name 由游戏方约束
+详情文档可参考[Yll_Android埋点](https://github.com/yllgame2021/yllgamesdk/blob/master/%E5%9F%8B%E7%82%B9%E9%9C%80%E6%B1%82/Android/%E7%BB%9F%E8%AE%A1%E5%9F%8B%E7%82%B9Android.md)
+
+### 3.11 获取推送token
+-调用获取token调用方式：YGMessageApi.getInstance().getPushToken() 
+ ``` java
+     /**
+     * 获取推送token
+     *
+     * @param callBack 回调的token
+     */
+    public void getPushToken(@NonNull YGCallBack<String> callBack)
+ ```
+### 3.12 推送处理
+ ``` java
+ public class LauncherActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getIntent().getExtras() != null) {
+            YGMessageApi.getInstance().clickPushMessage(SPStaticUtils.getRoleId(), SPStaticUtils.getRoleServiceId(), getIntent().getExtras());
+        }
+        setContentView(R.layout.activity_launcher);
+    }
+}
+ ```
+**注：用户点击通知栏的时候会默认进入launch的activity，在当前界面获取传递的数据并调SDK的clickPushMessage函数**
+####  配置Google 服务插件和导入google-service.json
 在项目的build.gradle配置com.google.gms.google-services插件并且导入google-service.json文件
  ![image](https://user-images.githubusercontent.com/19358621/118480934-7ea06780-b745-11eb-94fc-d0048ef543da.png)
 ![image](https://user-images.githubusercontent.com/19358621/118481332-f1a9de00-b745-11eb-9627-58079b444310.png)
 
-### 6.2清单文件配置推送Service和推送图标
+#### 清单文件配置推送Service和推送图标
 ``` xml
         <service
             android:name=".MyFirebaseMessagingService"
@@ -554,101 +461,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 ```
 **注：com.google.firebase.messaging.default_notification_icon 图标为透明单色图标
 YGMessageApi.getInstance().handlePushMessage(remoteMessage);函数必须接入，在推送消息的service的onMessageReceived里。**
-### 6.3推送通知栏点击处理
- ``` java
- public class LauncherActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getIntent().getExtras() != null) {
-            YGMessageApi.getInstance().clickPushMessage(SPStaticUtils.getRoleId(), SPStaticUtils.getRoleServiceId(), getIntent().getExtras());
-        }
-        setContentView(R.layout.activity_launcher);
-    }
-}
- ```
-**注：用户点击通知栏的时候会默认进入launch的activity，在当前界面获取传递的数据并调SDK的clickPushMessage函数**
-### 6.4获取推送token
--调用获取token调用方式：YGMessageApi.getInstance().getPushToken() 
- ``` java
-     /**
-     * 获取推送token
-     *
-     * @param callBack 回调的token
-     */
-    public void getPushToken(@NonNull YGCallBack<String> callBack)
- ```
-## 7.0数据统计
-### 7.1通用事件埋点（不带参数）
-- 调用埋点函数为：`` YGEventApi.onEvent() ``
-``` java
-    /**
-     * @param event_name 事件名称
-     */
-    public static void onEvent(String event_name) 
-```
-### 7.2通用事件埋点（带参数）
-- 调用埋点函数为：`` YGEventApi.onEvent() ``
-``` java
-    /**
-     * @param event_name 事件名称
-     * @param params     事件额外参数
-     */
-    public static void onEvent(String event_name, Map params) 
-```
-event_name分为游戏通用埋点和自定义埋点的事件名称
-通用事件埋点event_name 都需要按规定书写
-由YGEventConstants提供，列如YGEventConstants.YG_GAME_UPDATE_BEGIN
-
-自定义事件埋点event_name 由游戏方约束
-详情文档可参考[Yll_Android埋点](https://github.com/yllgame2021/yllgamesdk/blob/master/%E5%9F%8B%E7%82%B9%E9%9C%80%E6%B1%82/Android/%E7%BB%9F%E8%AE%A1%E5%9F%8B%E7%82%B9Android.md)
-### 7.3Firebase埋点事件
-- 调用埋点函数为：`` YGEventApi.onFireBaseEvent() ``
-``` java
-    /**
-     * Facebook事件
-     *
-     * @param eventName 事件名称
-     * @param params    事件参数 没有参数直接传null
-     */
-    public static void onFireBaseEvent(String eventName, Map params)
-```
-### 7.4Facebook埋点事件
-- 调用埋点函数为：`` YGEventApi.onFacebookEvent() ``
-``` java
-    /**
-     * Facebook事件
-     *
-     * @param eventName 事件名称
-     * @param params    事件参数 没有参数直接传null
-     */
-    public static void onFacebookEvent(String eventName, Map params)
-```
-### 7.5AppsFlyer埋点事件
-- 调用埋点函数为：`` YGEventApi.onAppsFlyerEvent() ``
-``` java
-    /**
-     * AppsFlyer事件
-     *
-     * @param eventName 事件名称
-     * @param params    事件参数 没有参数直接传null
-     */
-    public static void onAppsFlyerEvent(String eventName, Map params)
-```
-### 7.6所有三方埋点事件
-- 调用埋点函数为：`` YGEventApi.onThirdEvent() ``
-``` java
-    /**
-     * 上报Facebook&Firebase&AppsFlyer平台事件
-     *
-     * @param eventName 事件名称
-     * @param params    事件参数 没有参数直接传null
-     */
-    public static void onThirdEvent(String eventName, Map params)
-```
-## 8.0其它
-### 8.1获取SDK 版本号名称
+### 3.13 获取SDK版本
 - 调用获取SDK函数为：`` YGCommonApi.getSDKVersionName() ``
 ``` java
      /**
@@ -656,7 +469,7 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
      */
     public static String getSDKVersionName()
 ```
-### 8.2获取SDK 版本号Code
+### 3.14 获取SDKBuild
 - 调用埋点函数为：``YGCommonApi.getSDKVersionCode() ``
 ``` java
     /**
@@ -664,7 +477,64 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
      */
     public static int getSDKVersionCode()
 ```
-### 8.3设置activity回调（必接）
+### 3.15 检查SDK版本(非必要)
+- SDK调起用户版本更新的函数为：`` YGUserApi.getInstance().getVersionInfo() ``
+ ``` java 
+     /**
+     * 获取版本
+     */
+    public void getVersionInfo()
+ ```
+ ###  AndroidManifest.xml
+``` xml
+        <!--将 ContentProvider 添加至 AndroidManifest.xml 文件，并将 {APP_ID} 设置为您的应用编号：-->
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
+            android:exported="true" />
+        <!--如果您的应用程序面向 Android 11 或更高版本，请向 AndroidManifest.xml 文件添加以下查询块，以使 Facebook 应用对您的应用可见-->
+        <queries>
+            <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
+        </queries>
+```
+### 3.16 Facebook 分享
+- Facebook分享链接的函数为：`` YGTripartiteApi.getInstance().shareLink ``
+``` java 
+    /**
+     * 分享链接
+     *
+     * @param activity 当前的activity
+     * @param quote    分享的标题
+     * @param url      分享的url
+     * @param callback 分享回调
+     */
+    public void shareLink(Activity activity, String quote, String url, FacebookCallback<Sharer.Result> callback)
+```
+### 3.17获取Facebook好友列表
+- 获取Facebook好友列表的函数为：`` YGTripartiteApi.getInstance().getFacebookFriends ``
+``` java 
+    /**
+     * 获取Facebook好友
+     *
+     * @param activity 当前的activity
+     * @param callBack 好友列表回调
+     */
+    public void getFacebookFriends(Activity activity, YGCallBack<List<GameFacebookFriendEntity>> callBack)
+```
+### 3.18 打开举报页面
+- SDK调起游戏举报的函数为：`` YGUserApi.getInstance().showReportView ``
+``` java 
+    /**
+     * 游戏举报
+     *
+     * @param activity       当前activity
+     * @param reportRoleId   举报者角色id
+     * @param reportedRoleId 被举报者角色id
+     * @param serviceId      角色服务器id
+     */
+    public void showReportView(Activity activity, String reportRoleId, String reportedRoleId, String serviceId)
+```
+### 3.19设置activity回调（必接）
 - 调用设置activity函数为：``YGCommonApi.setCallback() `` 
 ``` java
     /**
@@ -684,65 +554,23 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
         super.onActivityResult(requestCode, resultCode, data);
     }
 ```
-## 9.0弱联网
-### 9.1设置弱联网模式
-- 调用设置弱联网函数为：``  YllGameSdk.setNetMode(int mode); ``
-``` java
-     /**
-     * 设置SDK联网默认模式 默认强联网模式
-     *
-     * @param mode  YGConstants.SDK_STRONG_NET 强联网 YGConstants.SDK_WEAK_NET 弱联网
-     */
-    public static void setNetMode(int mode)
-```
-## 10 Facebook好友列表和分享（必须接入8.3）
-###  AndroidManifest.xml
-``` xml
-        <!--将 ContentProvider 添加至 AndroidManifest.xml 文件，并将 {APP_ID} 设置为您的应用编号：-->
-        <provider
-            android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
-            android:exported="true" />
-        <!--如果您的应用程序面向 Android 11 或更高版本，请向 AndroidManifest.xml 文件添加以下查询块，以使 Facebook 应用对您的应用可见-->
-        <queries>
-            <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
-        </queries>
-```
-### 10.1获取Facebook好友列表
-- 获取Facebook好友列表的函数为：`` YGTripartiteApi.getInstance().getFacebookFriends ``
+### 3.20 打开展示房间/房间用户举报页面
+- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showRoomReportView ``
 ``` java 
     /**
-     * 获取Facebook好友
+     * 语聊举报
      *
-     * @param activity 当前的activity
-     * @param callBack 好友列表回调
+     * @param activity          当前activity
+     * @param reportType        1房间 2角色
+     * @param reportRoleId      举报者角色id
+     * @param reportServiceId   举报者区服Id
+     * @param reportedRoleId    被举报者角色id
+     * @param reportedServiceId 被举举报者区服Id
+     * @param roomId            房间Id
      */
-    public void getFacebookFriends(Activity activity, YGCallBack<List<GameFacebookFriendEntity>> callBack)
+    public void showRoomReportView(Activity activity, String reportType, String reportRoleId, String reportServiceId, String reportedRoleId, String reportedServiceId, String roomId)
 ```
-### 10.2Facebook分享链接
-- Facebook分享链接的函数为：`` YGTripartiteApi.getInstance().shareLink ``
-``` java 
-    /**
-     * 分享链接
-     *
-     * @param activity 当前的activity
-     * @param quote    分享的标题
-     * @param url      分享的url
-     * @param callback 分享回调
-     */
-    public void shareLink(Activity activity, String quote, String url, FacebookCallback<Sharer.Result> callback)
-```
-### 10.3Facebook公共页面
-- Facebook公共页面：`` YGTripartiteApi.getInstance().openFacebookPage ``
-``` java 
-    /**
-     * Facebook公共页面
-     *
-     * @param pageId 账号id
-     */
-    public void openFacebookPage(Activity activity,String pageId)
-```
-### 10.4阿里云上传图片
+### 3.21 上传图片
 文件读写权限获取：
 ``` java 
     /**
@@ -808,8 +636,130 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
         super.onActivityResult(requestCode, resultCode, data);
     }
 ```
-## 11 
-### 11.1网络检测
+### 3.22 获取活动信息
+- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().getActivityInfos ``
+``` java 
+    /**
+     * 获取活动信息
+     *
+     * @param serviceId 服务器id
+     * @param roleId    角色id
+     * @param callBack  回调
+     */
+    public void getActivityInfos(String serviceId, String roleId, YGCallBack<List<GameActivityEntity>> callBack)
+```
+### 3.23 获取手机号绑定状态
+- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().getPhoneBindState ``
+``` java 
+    /**
+     * 获取手机绑定状态
+     *
+     * @param callBack true 已绑定手机 false 未绑定手机
+     */
+    public void getPhoneBindState(YGBooleanCallBack callBack)
+```
+### 3.24 跳转到facebook主页
+- Facebook公共页面：`` YGTripartiteApi.getInstance().openFacebookPage ``
+``` java 
+    /**
+     * Facebook公共页面
+     *
+     * @param pageId 账号id
+     */
+    public void openFacebookPage(Activity activity,String pageId)
+```
+### 3.25 展示账号绑定页面
+- SDK展示绑定界面的函数为：`` YGUserApi.getInstance().showAccountBindView ``
+  ``` java 
+     /**
+     * 展示绑定界面
+     *
+     * @param activity
+     */
+    public void showAccountBindView(Activity activity)
+  ```
+### 3.26 展示手机号绑定页面
+- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showPhoneBindView ``
+``` java 
+    /**
+     * 显示绑定界面
+     *
+     * @param activity          当前Activity
+     * @param ygBooleanCallBack true：绑定成功
+     */
+    public void showPhoneBindView(Activity activity, YGBooleanCallBack ygBooleanCallBack)
+```
+### 3.27 展示举报消息页面
+- SDK调起展示举报消息页面的函数为：`` YGUserApi.getInstance().showReportCustomMsgView ``
+``` java 
+
+    /**
+     * 展示举报消息页面
+     *
+     * @param activity       当前Activity
+     * @param gameServerId   区服id
+     * @param reportRoleId   举报者角色Id
+     * @param beReportRoleId 被举报者角色Id
+     * @param scene          场景（世界、联盟、私聊）根据游戏定
+     * @param chatMsgList    消息内容数据集合
+     *                       {"roleId":"消息发送者角色id",
+     *                       "roleName":"角色名称",
+     *                       "msgContent":"消息内容",
+     *                       "msgContent":"消息内容",
+     *                       "msgType":0 文本消息  1图片消息,
+     *                       "msgTime":"发送时间(时间戳到秒)",
+     *                       "isReport":1(是否为举报消息1是 0否)}
+     */
+    public void showReportCustomMsgView(Activity activity,
+                                        String gameServerId,
+                                        String reportRoleId,
+                                        String beReportRoleId,
+                                        String scene,
+                                        List<GameReportChatEntity> chatMsgList) 
+```
+### 3.28 展示举报语聊房消息页面
+- SDK调起展示举报语聊房消息页面的函数为：`` YGUserApi.getInstance().showReportChatRoomMsgView ``
+``` java 
+    /**
+     * 展示举报语聊房消息页面
+     *
+     * @param activity             当前Activity
+     * @param roomId               房间id
+     * @param reportGameServerId   举报者区服id
+     * @param beReportGameServerId 被举报者区服id
+     * @param reportRoleId         举报者角色Id
+     * @param beReportRoleId       被举报者角色Id
+     * @param chatMsgList          消息内容数据集合
+     *                             {"roleId":"消息发送者角色id",
+     *                             "roleName":"角色名称",
+     *                             "msgContent":"消息内容",
+     *                             "msgType":0 文本消息  1图片消息,
+     *                             "msgTime":"发送时间(时间戳到秒)",
+     *                             "isReport":1(是否为举报消息1是 0否)}
+     */
+    public void showReportChatRoomMsgView(Activity activity,
+                                          String roomId,
+                                          String reportGameServerId,
+                                          String beReportGameServerId,
+                                          String reportRoleId,
+                                          String beReportRoleId,
+                                          List<GameReportChatEntity> chatMsgList)
+```
+
+
+## 9.0弱联网
+### 9.1设置弱联网模式
+- 调用设置弱联网函数为：``  YllGameSdk.setNetMode(int mode); ``
+``` java
+     /**
+     * 设置SDK联网默认模式 默认强联网模式
+     *
+     * @param mode  YGConstants.SDK_STRONG_NET 强联网 YGConstants.SDK_WEAK_NET 弱联网
+     */
+    public static void setNetMode(int mode)
+```
+## 10 Facebook好友列表和分享（必须接入设置回调）
+### 3.29 展示网络检测页面
 - 调用网络检测函数为：`` YGNetDiagnosis.getInstance().showNetCheckView ``
 ``` java
     /**

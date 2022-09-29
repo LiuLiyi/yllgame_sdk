@@ -120,9 +120,9 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 1.5.5 在 REVERSED_CLIENT_ID 键内的 <string> 中，将 [REVERSED_CLIENT_ID] 替换为反向的客户ID
   
 #### 1.6 Firebase Crashlytics 接入([官网](https://firebase.google.com/docs/crashlytics?hl=zh-cn))
-1.6.1 确定 Podfile 已添加 pod 'Firebase/Crashlytics', '8.13.0', 且已经执行 pod install
-1.6.2 在工程的相对应的 `Targets` -> `Build Settings` 搜索 `debug information format` ，将 Debug 和 Release 都设为 `DWARF with dSYM File`
-1.6.3 在工程的相对应的 `Targets` -> `Build Phases`, 添加 `New Run Script Phase` ，添加 `"${PODS_ROOT}/FirebaseCrashlytics/run"`，在当前的 Run Script 的Input Files下，添加 `${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}` `$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)`
+1.6.1 确定 Podfile 已添加 pod 'Firebase/Crashlytics', '8.13.0', 且已经执行 pod install<br>
+1.6.2 在工程的相对应的 `Targets` -> `Build Settings` 搜索 `debug information format` ，将 Debug 和 Release 都设为 `DWARF with dSYM File`<br>
+1.6.3 在工程的相对应的 `Targets` -> `Build Phases`, 添加 `New Run Script Phase` ，添加 `"${PODS_ROOT}/FirebaseCrashlytics/run"`，在当前的 Run Script 的Input Files下，添加 `${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}` `$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)`<br>
 ![配置](img/firebasecrash.png)
 
 #### 1.7 SDK所需权限

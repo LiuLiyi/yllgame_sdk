@@ -147,10 +147,16 @@ SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
 - 在`AppDelegate.m`的`didFinishLaunchingWithOptions`函数中添加以下代码
 ```obj-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     // YllSDK-------Begin------gameAppId, appleAppId, appsFlyerDevKey这些参数需要联系游戏发行方获取，改为自己的！
     [YllGameSDK getInstance].gameAppId = @"";
     [YllGameSDK getInstance].appleAppId = @"";
     [YllGameSDK getInstance].appsFlyerDevKey = @"";
+    
+    // languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 该集合默认第一个是SDK的默认语言
+    [YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
+    // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
+    [YllGameSDK getInstance].localLanguage = @"ar";
     
     // 设置完以上属性之后再调用该方法, 不然对于语区统计会有影响
     [[YllGameSDK getInstance] yg_application:application didFinishLaunchingWithOptions:launchOptions];

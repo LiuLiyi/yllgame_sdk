@@ -8,9 +8,11 @@ Xcode环境配置
 
 IDE: Xcode14.0+, 支持系统: iOS10.0+
 
-SDK不支持bitcode，项目请勿打开
+SDK不支持`bitcode`，项目请勿打开(Xcode14.0+已移除 `bitcode`选项, 无需要操作)
 
 SDK目前支持语言: 阿拉伯语(ar), 英语(en), 土耳其语(tr)
+
+SDK仅支持 arm64 架构
 
 ## 1. iOS项目配置
 

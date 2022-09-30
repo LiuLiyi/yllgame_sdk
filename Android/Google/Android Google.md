@@ -757,3 +757,25 @@ AndroidManifest.xml
      */
     public void showNetCheckView(Activity activity, String userId, String roleId)
 ```
+### 3.30 获取用户消息数量变更通知
+- 调用网络检测函数为：`` YGUserApi.getInstance().getCustomerMsg ``
+``` java
+    /**
+     * 获取消息信息接口
+     *
+     * @param roleId    游戏角色Id
+     * @param serviceId 角色所在区服Id
+     * @param callBack  回调 未读消息数量0没有 大于0表示有
+     */
+    public void getCustomerMsg(String roleId, String serviceId, YGCallBack<Integer> callBack)
+```
+### 3.31 展示客服页面
+- 调用网络检测函数为：`` YGUserApi.getInstance().showCustomerView ``
+``` java
+    /**
+     * 展示客服页面
+     *
+     * @param activity 当前activity
+     */
+    public void showCustomerView(Activity activity)
+```

@@ -66,14 +66,7 @@
  ```
 
 ## 2.项目配置，初始化
-
-### 2.1Androidmanifest.xml中添加权限
-``` xml
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-```
-### 2.2初始化Application
+### 2.1初始化Application
 在项目的application的onCreate函数中调用SDK的初始化函数，并且调用SDK的设置语言函数。
 - SDK初始化函数：``` YllGameSdk.getInstance().init(); ```
 ``` java 
@@ -105,9 +98,17 @@
      */
     public static void setLanguage(String localLanguage)
  ```
- 
+- 调用设置弱联网函数为：``  YllGameSdk.setNetMode(int mode); ``
+``` java
+     /**
+     * 设置SDK联网默认模式 默认强联网模式
+     *
+     * @param mode  YGConstants.SDK_STRONG_NET 强联网 YGConstants.SDK_WEAK_NET 弱联网
+     */
+    public static void setNetMode(int mode)
+```
 **（注：项目的application要在AndroidManifest中注册，项目中初始化参数的key 找运营方）**
-### 2.3配置Facebook
+### 2.2配置Facebook
 在项目中的AndroidManifest中添加
 ``` xml
         <activity
@@ -133,7 +134,7 @@
     <string name="fb_login_protocol_scheme" translatable="false">fb15793xxxxxxxxxx</string>
 ```
 **（注：facebook_app_id和fb_login_protocol_scheme 在Android项目string里，需要接入者自行变更为游戏的Facebook的APPID）**
-### 2.4注册登陆Receiver
+### 2.3注册登陆Receiver
 在项目中的AndroidManifest中注册
 ``` xml
         <receiver
@@ -174,7 +175,7 @@ public class YGLoginReceiver extends BroadcastReceiver {
 ```
 注：项目中所有登陆以都会通过广播通知并且在下发用户信息，YGLoginReceiver为固定写法，该广播放在项目包名.ygapi下
 退出登录要退出到登陆界面并且清除本地用户信息
-### 2.5注册YGReceiver
+### 2.4注册YGReceiver
 在项目中的AndroidManifest中注册
 ``` xml
         <receiver
@@ -206,10 +207,10 @@ public class YGReceiver extends BroadcastReceiver {
 }
 ```
 注：YGReceiver为固定写法，该广播放在项目包名.ygapi下
-### 2.6 设置allowBackup配置
+### 2.5 设置allowBackup配置
 ``` android:allowBackup="false" ```</br>
 **注：新生成的项目allowBackup为true，须在项目的AndroidManifest中application设置allowBackup为false**
-### 2.7 Firebase Crash配置
+### 2.6 Firebase Crash配置
 #### 配置Crashlytics Gradle plugin
 ```  
 //（在项目的build.gradle添加）
@@ -745,20 +746,6 @@ AndroidManifest.xml
                                           String beReportRoleId,
                                           List<GameReportChatEntity> chatMsgList)
 ```
-
-
-## 9.0弱联网
-### 9.1设置弱联网模式
-- 调用设置弱联网函数为：``  YllGameSdk.setNetMode(int mode); ``
-``` java
-     /**
-     * 设置SDK联网默认模式 默认强联网模式
-     *
-     * @param mode  YGConstants.SDK_STRONG_NET 强联网 YGConstants.SDK_WEAK_NET 弱联网
-     */
-    public static void setNetMode(int mode)
-```
-## 10 Facebook好友列表和分享（必须接入设置回调）
 ### 3.29 展示网络检测页面
 - 调用网络检测函数为：`` YGNetDiagnosis.getInstance().showNetCheckView ``
 ``` java

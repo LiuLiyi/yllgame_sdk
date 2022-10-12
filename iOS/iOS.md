@@ -611,7 +611,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```
       
 ### 3.31 展示客服页面
-- 调用该函数前需先调用 `3.31 获取用户消息数量变更通知`
+- 调用该函数前需先调用 `3.30 获取用户消息数量变更通知`
 ```obj-c
 /// 展示客服页面
 [[YllGameSDK getInstance] yg_showCustomerView];

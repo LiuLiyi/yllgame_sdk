@@ -161,7 +161,8 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
     [YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
     // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
     [YllGameSDK getInstance].localLanguage = @"ar";
-    
+    // 实现推送代理
+    [YllGameSDK getInstance].notificationDelegate = self;
     // 设置完以上属性之后再调用该方法, 不然对于语区统计会有影响
     [[YllGameSDK getInstance] yg_application:application didFinishLaunchingWithOptions:launchOptions];
     // 初始化SDK
@@ -178,10 +179,6 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
     return [[YllGameSDK getInstance] yg_application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    [[YllGameSDK getInstance] yg_application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -616,4 +613,26 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 /// 展示客服页面
 [[YllGameSDK getInstance] yg_showCustomerView];
 ```
+
+### 3.32 推送功能
+- 推送功能, 不需要该功能可不实现
+1. 在 `AppDelegate.m` 文件的 `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions` 函数内添加新增代码
+```obj-c
+[YllGameSDK getInstance].notificationDelegate = self;
+```
       
+2. `AppDelegate.m` 遵守协议
+```obj-c
+@interface AppDelegate ()<YGUNUserNotificationCenterDelegate>
+
+@end
+```
+
+3. 实现以下代理函数
+```obj-c
+/// 前台推送才会收到, 可以设置通知是否需要展示
+- (void)yg_userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler API_AVAILABLE(ios(10.0));
+
+/// 当用户与推送的通知进行交互时被调用，包括用户通过通知打开了应用或者触发了某个action
+- (void)yg_userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler API_AVAILABLE(ios(10.0));
+```

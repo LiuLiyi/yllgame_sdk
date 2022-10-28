@@ -615,7 +615,7 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```
 
 ### 3.32 推送功能
-- 推送功能, 不需要该功能可不实现
+- 推送功能, 业务不需要可不接入该功能
 1. 在 `AppDelegate.m` 文件的 `- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions` 函数内添加新增代码
 ```obj-c
 [YllGameSDK getInstance].notificationDelegate = self;

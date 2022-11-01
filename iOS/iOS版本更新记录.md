@@ -3,6 +3,7 @@
 - v1.0.5.3 
 1. 新增 `推送功能` 
 2. 移除 `- (void)yg_application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;` 函数
+3. SDK 内部优化
 
 - v1.0.5.2
 1. 新增 `获取用户消息数量变更通知` 函数

@@ -1,5 +1,9 @@
 
 ## SDK版本更新纪录 
+- v1.0.5.3 
+1. 新增推送功能
+2. 移除 `- (void)yg_application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;` 函数
+
 - v1.0.5.2
 1. 新增 `获取用户消息数量变更通知` 函数
 2. 新增 `展示客服页面` 函数

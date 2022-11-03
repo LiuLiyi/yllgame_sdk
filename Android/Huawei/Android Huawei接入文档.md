@@ -47,10 +47,6 @@
     api 'com.appsflyer:af-android-sdk:6.2.3@aar'
     api 'com.appsflyer:oaid:6.2.4'
     api 'com.android.installreferrer:installreferrer:2.2'
-    //FCM 推送相关
-    api platform('com.google.firebase:firebase-bom:26.4.0')
-    api 'com.google.firebase:firebase-analytics'
-    api 'com.google.firebase:firebase-core:16.0.1'
     api 'com.aliyun.dpa:oss-android-sdk:2.9.9'
     //华为登陆 hms
     api 'com.huawei.hms:hwid:5.2.0.300'

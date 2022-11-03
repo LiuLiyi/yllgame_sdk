@@ -58,6 +58,9 @@
     //图片加载库
     api 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+    //华为carsh
+    api 'com.huawei.agconnect:agconnect-core:1.7.2.300'
+    api 'com.huawei.agconnect:agconnect-crash-native:1.7.2.300'
  ```
  ### 1.4 设置项目build.gradle
    ``` Groovy
@@ -231,6 +234,27 @@ public class YGReceiver extends BroadcastReceiver {
 ### 2.5 设置allowBackup配置
 ``` android:allowBackup="false" ```</br>
 **注：新生成的项目allowBackup为true须在项目的AndroidManifest中application设置allowBackup为false**
+### 2.5 华为Carsh
+#### 1. 设置agcp参数
+```
+...
+//app的
+agcp{
+    symbolUpload = true
+    debug = false
+    //设置so文件
+    debugSoDirectory = '../FirebaseNDKTest/app/build/intermediates/merged_native_libs/debug/out/lib'
+    //Android studio ndk
+    ndkDirectory = 'D:/AndroidSDK/ndk/22.1.7171670'
+}
+android{
+...
+}
+```
+#### 2. 执行gradle任务
+![image](https://user-images.githubusercontent.com/19358621/199694652-f9ee68be-3962-4dae-8362-8f14f4c32991.png)
+**看见控制台输出：--I- Upload symbol file success, appVersion is , appid is , variantName is release
+则表示成功**
 ## 3.SDK Api接口
 ### 3.1 登陆
 - SDK调起登陆函数：``` YGLoginApi.getInstance().login(); ```

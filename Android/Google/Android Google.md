@@ -193,7 +193,7 @@ public class YGLoginReceiver extends BroadcastReceiver {
             } else if (userInfoEntity.getType() == GameUserInfoEntity.TYPE_ACCOUNT_LOGIN_OUT) {
                 //退出登录
             }else if (userInfoEntity.getType() == GameUserInfoEntity.TYPE_FAIL_ACCOUNT_EXPIRED) {
-                //账号过期
+                //账号过期退出到登陆界面
             }
         }
     }

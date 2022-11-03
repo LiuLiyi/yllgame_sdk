@@ -4,7 +4,7 @@
 支持平台：Android</br>
 系统要求: Android5.0+ </br>
 环境要求: Android Studio</br>
-支持语言：阿语，英语</br>
+支持语言：阿语，英语，土耳其语</br>
 
 ## 1.接入流程
 ### 1.1集成AAR包
@@ -28,7 +28,7 @@
  ### 1.3 导入SDK中所需第三方库
    ``` Groovy
    //Android X支持库  必须添加
-   api 'com.google.android.material:material:1.3.0'
+    api 'com.google.android.material:material:1.3.0'
     api 'androidx.appcompat:appcompat:1.2.0'
     //okhttp网络请求库 必须添加
     api("com.squareup.okhttp3:okhttp:4.9.0")
@@ -53,10 +53,9 @@
     api 'com.appsflyer:oaid:6.2.4'
     api 'com.android.installreferrer:installreferrer:2.2'
     //FCM 推送相关
-    api platform('com.google.firebase:firebase-bom:26.4.0')
+    api platform('com.google.firebase:firebase-bom:31.0.2')
     api 'com.google.firebase:firebase-messaging'
     api 'com.google.firebase:firebase-analytics'
-    api 'com.google.firebase:firebase-core:16.0.1'
     api 'com.aliyun.dpa:oss-android-sdk:2.9.9'
     //图片加载库
     api 'com.github.bumptech.glide:glide:4.13.2'
@@ -64,6 +63,29 @@
     //Crash
     api 'com.google.firebase:firebase-crashlytics'
     api 'com.google.firebase:firebase-crashlytics-ndk'
+ ```
+ ### 1.4 设置项目build.gradle
+   ``` Groovy
+   buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        ...
+        classpath 'com.google.gms:google-services:4.3.14'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30'
+        // Google Carsh
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
  ```
 
 ## 2.项目配置，初始化
@@ -86,7 +108,7 @@
     /**
      * 设置SDK支持语言
      *
-     * @param languageList 游戏支持语言集合 现支持 ar 阿语 en英语 该集合默认第一个是SDK的默认语言
+     * @param languageList 游戏支持语言集合 现支持 ar 阿语 en英语 tr土耳其语 该集合默认第一个是SDK的默认语言
      */
     public static void setLanguageList(List<String> languageList) 
  ```
@@ -95,7 +117,7 @@
     /**
      * 设置SDK默认语言
      *
-     * @param localLanguage ar 阿语 en英语
+     * @param localLanguage ar 阿语 en英语 tr土耳其语
      */
     public static void setLanguage(String localLanguage)
  ```
@@ -115,6 +137,7 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="true"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
@@ -169,6 +192,8 @@ public class YGLoginReceiver extends BroadcastReceiver {
                 //修改昵称成功
             } else if (userInfoEntity.getType() == GameUserInfoEntity.TYPE_ACCOUNT_LOGIN_OUT) {
                 //退出登录
+            }else if (userInfoEntity.getType() == GameUserInfoEntity.TYPE_FAIL_ACCOUNT_EXPIRED) {
+                //账号过期
             }
         }
     }
@@ -418,20 +443,51 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
     public void getPushToken(@NonNull YGCallBack<String> callBack)
  ```
 ### 3.12 推送处理
+#### 1.设置游戏Activity action 
+``` xml
+        <activity
+            android:name=".ui.SampleActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="true">
+            <intent-filter>
+                <!--        设置action        -->
+                <action android:name="com.yllgame.sdk.push.intent.action.custom" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+```
  ``` java
- public class LauncherActivity extends AppCompatActivity {
+ public class SampleActivity extends AppCompatActivity {
+@Override
+    protected void onNewIntent(Intent intent) {
+        LogUtils.logEForDeveloper("LoginActivity>>>>>onNewIntent");
+        //设置intent
+        setIntent(intent);
+        //获取通知栏点击data
+        getData(intent);
+        super.onNewIntent(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getIntent().getExtras() != null) {
-            YGMessageApi.getInstance().clickPushMessage(SPStaticUtils.getRoleId(), SPStaticUtils.getRoleServiceId(), getIntent().getExtras());
-        }
-        setContentView(R.layout.activity_launcher);
+        //获取通知栏点击data
+        getData(getIntent());
+        setContentView(R.layout.activity_login);
     }
-}
+
+    private void getData(Intent intent) {
+        if (intent == null || intent.getExtras() == null) return;
+        Bundle bundle = intent.getExtras();
+        //获取通知的类型和内容
+        String type = bundle.getString("ClickActionGoType", "1");
+        String content = bundle.getString("ClickActionGoContent", "");
+        //调用SDK的点击函数
+        YGMessageApi.getInstance().clickPushMessage(SPStaticUtils.getRoleId(), SPStaticUtils.getRoleServiceId(), getIntent().getExtras());
+        LogUtils.logEForDeveloper("push>>>>>type:" + type + ">>>>>content:" + content);
+    }}
  ```
-**注：用户点击通知栏的时候会默认进入launch的activity，在当前界面获取传递的数据并调SDK的clickPushMessage函数**
+**注：用户点击通知栏的时候会默认进入设置action的SampleActivity，在当前界面获取传递的数据并调SDK的clickPushMessage函数**
 ####  配置Google 服务插件和导入google-service.json
 在项目的build.gradle配置com.google.gms.google-services插件并且导入google-service.json文件
  ![image](https://user-images.githubusercontent.com/19358621/118480934-7ea06780-b745-11eb-94fc-d0048ef543da.png)

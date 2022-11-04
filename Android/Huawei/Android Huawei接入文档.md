@@ -12,6 +12,8 @@
  ``` Groovy
  //SDK基础库
  implementation(name: 'YllGameSdk', ext: 'aar') 
+ //geetest
+ api(name: 'geetest_captcha_android_v1.8.0_20220923', ext: 'aar')
  ```
  ### 1.2设置项目的libs文件目录和过滤so
  在主项目APP的工程下build.gradle 中的android加入

@@ -14,7 +14,7 @@ SDK支持架构: arm64
 
 SDK不支持`bitcode`，项目请勿打开(Xcode14.0+已移除 `bitcode`选项)
 
-SDK依赖第三方库: `GTCaptcha4.xcframework` `NetDiag.xcframework`
+SDK依赖第三方库(找YllGameSDK方下载): `GTCaptcha4.xcframework` `NetDiag.xcframework`
 
 SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-coder/cocoapods/617031))
 

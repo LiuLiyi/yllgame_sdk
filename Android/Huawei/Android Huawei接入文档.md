@@ -62,6 +62,7 @@
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     //华为carsh
     api 'com.huawei.agconnect:agconnect-core:1.7.2.300'
+    api 'com.huawei.agconnect:agconnect-crash:1.7.2.300'
     api 'com.huawei.agconnect:agconnect-crash-native:1.7.2.300'
  ```
  ### 1.4 设置项目build.gradle

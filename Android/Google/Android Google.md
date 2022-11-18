@@ -473,6 +473,7 @@ event_name分为游戏通用埋点和自定义埋点的事件名称
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ...
         //获取通知栏点击data
         getData(getIntent());
         setContentView(R.layout.activity_login);

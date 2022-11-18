@@ -453,18 +453,18 @@ public class MyHmsMessageService extends HmsMessageService {
 #### 1.设置游戏Activity action 
 ``` xml
         <activity
-            android:name=".ui.SampleActivity"
+            android:name=".游戏Activity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:exported="true">
             <intent-filter>
                 <!--        设置action        -->
-                <action android:name="com.yllgame.sdk.push.intent.action.custom" />
+                <action android:name="游戏包名.push.intent.action.custom" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 ```
  ``` java
- public class SampleActivity extends AppCompatActivity {
+ public class 游戏Activity {
 @Override
     protected void onNewIntent(Intent intent) {
         LogUtils.logEForDeveloper("LoginActivity>>>>>onNewIntent");

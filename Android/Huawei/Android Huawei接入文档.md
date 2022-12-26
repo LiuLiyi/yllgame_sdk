@@ -13,7 +13,7 @@
  //SDK基础库
  implementation(name: 'YllGameSdk', ext: 'aar') 
  //geetest
- api(name: 'geetest_captcha_android_v1.8.0_20220923', ext: 'aar')
+ api(name: 'geetest_captcha_android', ext: 'aar')
  ```
  ### 1.2设置项目的libs文件目录和过滤so
  在主项目APP的工程下build.gradle 中的android加入
@@ -108,7 +108,7 @@ allprojects {
  - SDK 设置语言集合函数：``` YllGameSdk.setLanguageList(); ```
 ``` java 
     /**
-     * 设置SDK支持语言
+     * 设置SDK支持语言，必须调用在init之前
      *
      * @param languageList 游戏支持语言集合 现支持 ar 阿语 en英语 tr土耳其语 该集合默认第一个是SDK的默认语言
      */
@@ -229,6 +229,9 @@ public class YGReceiver extends BroadcastReceiver {
              *     private int isBindPhone = 1 绑定手机
              *     private int isBindHuaWei = 1 绑定华为
              */
+        }else if (intent.getAction() == YGConstants.BROADCAST_RECEIVER_LANGUAGE_ACTION) {
+            String region = intent.getExtras().getString(YGConstants.BROADCAST_RECEIVER_LANGUAGE_INFO_KEY);
+            LogUtils.logEForDeveloper("获取到初始化语言：" + region);
         }
     }
 }

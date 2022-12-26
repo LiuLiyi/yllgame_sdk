@@ -230,6 +230,9 @@ public class YGReceiver extends BroadcastReceiver {
              *     private int isBindPhone = 1 绑定手机
              *     private int isBindHuaWei = 1 绑定华为
              */
+        }else if (intent.getAction() == YGConstants.BROADCAST_RECEIVER_LANGUAGE_ACTION) {
+            String region = intent.getExtras().getString(YGConstants.BROADCAST_RECEIVER_LANGUAGE_INFO_KEY);
+            LogUtils.logEForDeveloper("获取到初始化语言：" + region);
         }
     }
 }
@@ -818,7 +821,7 @@ AndroidManifest.xml
     public void showNetCheckView(Activity activity, String userId, String roleId)
 ```
 ### 3.30 获取用户消息数量变更通知
-- 调用网络检测函数为：`` YGUserApi.getInstance().getCustomerMsg ``
+- 调用获取消息信息函数为：`` YGUserApi.getInstance().getCustomerMsg ``
 ``` java
     /**
      * 获取消息信息接口
@@ -830,7 +833,7 @@ AndroidManifest.xml
     public void getCustomerMsg(String roleId, String serviceId, YGCallBack<Integer> callBack)
 ```
 ### 3.31 展示客服页面
-- 调用网络检测函数为：`` YGUserApi.getInstance().showCustomerView ``
+- 调用展示客服页面函数为：`` YGUserApi.getInstance().showCustomerView ``
 ``` java
     /**
      * 展示客服页面
@@ -839,3 +842,5 @@ AndroidManifest.xml
      */
     public void showCustomerView(Activity activity)
 ```
+### 3.33 获取初始化语区
+- SDK会在初始化时通过回调YGReceiver，示例代码参考2.4

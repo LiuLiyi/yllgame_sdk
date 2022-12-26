@@ -37,7 +37,7 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
   pod 'Firebase/Analytics', '8.13.0'
   pod 'Firebase/Crashlytics', '8.13.0'
   pod 'Firebase/Messaging', '8.13.0'
-  pod 'GoogleSignIn', '5.0.2'
+  pod 'GoogleSignIn', '6.2.4'
   pod 'AliyunOSSiOS', '2.10.11'
 ```
 
@@ -637,4 +637,10 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 
 /// 当用户与推送的通知进行交互时被调用，包括用户通过通知打开了应用或者触发了某个action
 - (void)yg_userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler API_AVAILABLE(ios(10.0));
+```
+  
+### 3.33 获取初始化语区
+- 该函数为游戏在第一次安装启动或注册新账户时, 根据用户的手机设置的国家和语言获取一个对应的语区语言
+```obj-c
+[[YllGameSDK getInstance] yg_getSDKLanguage];
 ```

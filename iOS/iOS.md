@@ -642,5 +642,5 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ### 3.33 获取初始化语区
 - 该函数为游戏在第一次安装启动或注册新账户时, 根据用户的手机设置的国家和语言获取一个对应的语区语言
 ```obj-c
-[[YllGameSDK getInstance] yg_getSDKLanguage];
+YGLanguage language = [[YllGameSDK getInstance] yg_getSDKLanguage];
 ```

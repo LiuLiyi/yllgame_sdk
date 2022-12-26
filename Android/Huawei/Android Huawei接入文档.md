@@ -2,7 +2,7 @@
 
 ## SDK结构
 支持平台：Android</br>
-系统要求: Android5.0+ </br>
+系统要求: Android6.0+ </br>
 环境要求: Android Studio</br>
 支持语言：阿语，英语，土耳其语</br>
 

@@ -108,7 +108,7 @@ allprojects {
  - SDK 设置语言集合函数：``` YllGameSdk.setLanguageList(); ```
 ``` java 
     /**
-     * 设置SDK支持语言
+     * 设置SDK支持语言，必须调用在init之前
      *
      * @param languageList 游戏支持语言集合 现支持 ar 阿语 en英语 tr土耳其语 该集合默认第一个是SDK的默认语言
      */

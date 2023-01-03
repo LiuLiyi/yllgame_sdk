@@ -1,6 +1,12 @@
 
 ## SDK版本更新纪录 
 
+- v1.0.5.5
+1. SDK登录页面调整
+2. SDK相册调整
+3. SDK内部逻辑优化
+
+
 - v1.0.5.4 
 1. 新增 `获取初始化语区` 
 2. pod GoogleSignIn 版本升级, 新版本为 `pod 'GoogleSignIn', '6.2.4'`

@@ -249,7 +249,7 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
  }];
 ```
 - 修改昵称成功(YGChangeNickName)是SDK账户体系的昵称修改，如果不使用，可以忽略
-- 退出登录(YGLogout)或者token过期(YGTokenOverdue)游戏方要退出到登陆界面并且清除本地用户信息，再调用登录函数
+- 除登录成功(YGLoginSuccess)和昵称成功(YGChangeNickName)，接收到其它状态游戏方都需要退出到登陆界面并且清除本地用户信息，再调用SDK登录函数
   
 ### 3.2 游客静默登陆与回调
   

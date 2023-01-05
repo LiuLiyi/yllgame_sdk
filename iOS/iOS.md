@@ -644,3 +644,12 @@ NSString *SDKBuild = [[YllGameSDK getInstance] yg_getSDKBuild];
 ```obj-c
 YGLanguage language = [[YllGameSDK getInstance] yg_getSDKLanguage];
 ```
+
+### 3.34 删除游戏角色
+```obj-c
+/// 删除游戏角色
+/// @param roleId 游戏角色id
+/// @param serverId 角色所在游戏区服id
+/// @param completeHandler BOOL true: 成功 false: 失败
+[[YllGameSDK getInstance] yg_deleteRoleWithRoleId:<#(NSString * _Nonnull)#> serverId:<#(NSString * _Nonnull)#> completeHandler:<#^(BOOL)completeHandler#>];
+```      

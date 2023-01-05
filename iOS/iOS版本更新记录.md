@@ -9,12 +9,12 @@
 
 
 - v1.0.5.4 
-1. 新增 `获取初始化语区` 
+1. 新增 `获取初始化语区` 函数
 2. pod GoogleSignIn 版本升级, 新版本为 `pod 'GoogleSignIn', '6.2.4'`
 
 
 - v1.0.5.3 
-1. 新增 `推送功能` 
+1. 新增 `推送功能` 及相关函数
 2. 移除 `- (void)yg_application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;` 函数
 3. 手机验证码发送新增校验步骤
 4. SDK 内部优化

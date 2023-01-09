@@ -817,16 +817,3 @@ AndroidManifest.xml
 ```
 ### 3.33 展示客服页面
 - SDK会在初始化时通过回调YGReceiver，示例代码参考2.4
-### 3.34 删除游戏角色
-- 调用删除游戏角色函数为：`` YGUserApi.getInstance().deleteRole ``
-``` java
-    /**
-     * 删除角色
-     *
-     * @param serviceId 服务器id
-     * @param roleId    角色id
-     * @param reason    删除原因
-     * @param callBack  回调
-     */
-    public void deleteRole(String roleId, String serviceId, String reason, YGBooleanCallBack callBack)
-```

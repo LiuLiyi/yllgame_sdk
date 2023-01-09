@@ -844,3 +844,16 @@ AndroidManifest.xml
 ```
 ### 3.33 获取初始化语区
 - SDK会在初始化时通过回调YGReceiver，示例代码参考2.4
+### 3.34 删除游戏角色
+- 调用删除游戏角色函数为：`` YGUserApi.getInstance().showCustomerView ``
+``` java
+    /**
+     * 删除角色
+     *
+     * @param serviceId 服务器id
+     * @param roleId    角色id
+     * @param reason    删除原因
+     * @param callBack  回调
+     */
+    public void deleteRole(String serviceId, String roleId, String reason, YGBooleanCallBack callBack)
+```

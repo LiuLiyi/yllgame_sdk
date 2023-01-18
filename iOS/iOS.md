@@ -132,8 +132,8 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
 ![配置](img/firebasecrash.png)
 
 #### 1.7 SDK所需权限
-- 相册权限 Privacy - Photo Library Usage Description
-- IDFA权限 Privacy - Tracking Usage Description
+- Privacy - Photo Library Usage Description 相册权限 
+- Privacy - Tracking Usage Description IDFA权限 
 - Privacy - Location Always and When In Use Usage Description 地理位置权限
 - Privacy - Location Always Usage Description 地理位置权限
 - Privacy - Location Usage Description 地理位置权限

@@ -119,7 +119,7 @@ allprojects {
     /**
      * 设置SDK默认语言
      *
-     * @param localLanguage ar 阿语  en英语 tr土耳其语 zh简体中文
+     * @param localLanguage ar 阿语 en英语 tr土耳其语 zh简体中文
      */
     public static void setLanguage(String localLanguage)
  ```

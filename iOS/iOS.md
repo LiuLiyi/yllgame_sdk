@@ -401,7 +401,7 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
 [[YGEventManager getInstance] onThirdEvent:<#(nonnull NSString *)#> params:<#(NSDictionary * _Nullable)#>];
 ```
 
-eventName和params参照[YllSDK iOS埋点]([https://github.com/yllgame2021/yllgamesdk/blob/master/%E5%9F%8B%E7%82%B9%E9%9C%80%E6%B1%82/IOS/%E7%BB%9F%E8%AE%A1%E5%9F%8B%E7%82%B9IOS.md](https://github.com/yllgame2021/yllgame_sdk/tree/main/%E5%9F%8B%E7%82%B9%E9%9C%80%E6%B1%82/iOS))
+eventName和params参照([YllSDK iOS埋点](https://github.com/yllgame2021/yllgame_sdk/tree/main/%E5%9F%8B%E7%82%B9%E9%9C%80%E6%B1%82/iOS))
 
 ### 3.11 获取推送token
 

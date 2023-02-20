@@ -6,7 +6,7 @@ Xcode环境配置
 
 IDE: Xcode14.0+ 
 
-SDK支持系统: iOS10.0+
+SDK支持系统: iOS11.0+
 
 SDK支持语言: 阿拉伯语(ar)，英语(en)，土耳其语(tr), 简体中文(zh-Hans)
 

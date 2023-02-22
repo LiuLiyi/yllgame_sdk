@@ -281,7 +281,88 @@ BUILD SUCCESSFUL in 3m 28s\
 Build Analyzer results available\
 Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上传成功**
 ![QQ截图20220920143805](https://user-images.githubusercontent.com/19358621/191185208-a8193098-d146-4e8c-a319-96b1ed041a68.png)
+### 2.7 YallaGameSDK横竖屏设置
+ * 如果游戏为竖屏，在AndroidManifest.xml内添加如下配置
+```
+        <activity
+            android:name=".ui.AccountManagerActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/YllGameSdkActivityTheme" >
+            
+        </activity>
 
+        <activity
+            android:name=".ui.AccountBindActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/YllGameSdkActivityTheme" >
+        </activity>
+
+        <activity
+            android:name=".ui.LoginDialogActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/YllGameSdkActivityTranslucentTheme" >
+        </activity>
+```
+ * 如果游戏为横屏，在AndroidManifest.xml内添加如下配置
+```
+        <activity
+            android:name=".ui.AccountManagerActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/YllGameSdkActivityTheme" >
+            
+        </activity>
+
+        <activity
+            android:name=".ui.AccountBindActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:exported="false"
+            android:theme="@style/YllGameSdkActivityTheme" >
+        </activity>
+
+        <activity
+            android:name=".ui.LoginDialogActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:exported="false"
+            android:theme="@style/YllGameSdkActivityTranslucentTheme" >
+        </activity>
+```
+ * 如果游戏为跟随传感器横屏，在AndroidManifest.xml内添加如下配置
+```
+        <activity
+            android:name=".ui.AccountManagerActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/YllGameSdkActivityTheme" >
+            
+        </activity>
+
+        <activity
+            android:name=".ui.AccountBindActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:exported="false"
+            android:theme="@style/YllGameSdkActivityTheme" >
+        </activity>
+
+        <activity
+            android:name=".ui.LoginDialogActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape"
+            android:exported="false"
+            android:theme="@style/YllGameSdkActivityTranslucentTheme" >
+        </activity>
+```
 ## 3.SDK Api接口
 
 ### 3.1 登陆

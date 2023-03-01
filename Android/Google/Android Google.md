@@ -285,7 +285,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
  * 如果游戏为竖屏，在AndroidManifest.xml内添加如下配置
 ```
         <activity
-            android:name=".ui.AccountManagerActivity"
+            android:name="com.yllgame.sdk.ui.AccountManagerActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -294,7 +294,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
         </activity>
 
         <activity
-            android:name=".ui.AccountBindActivity"
+            android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:exported="false"
@@ -302,7 +302,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
         </activity>
 
         <activity
-            android:name=".ui.LoginDialogActivity"
+            android:name="com.yllgame.sdk.ui.LoginDialogActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:exported="false"
@@ -312,7 +312,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
  * 如果游戏为横屏，在AndroidManifest.xml内添加如下配置
 ```
         <activity
-            android:name=".ui.AccountManagerActivity"
+            android:name="com.yllgame.sdk.ui.AccountManagerActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
             android:screenOrientation="landscape"
@@ -321,7 +321,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
         </activity>
 
         <activity
-            android:name=".ui.AccountBindActivity"
+            android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="landscape"
             android:exported="false"
@@ -329,7 +329,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
         </activity>
 
         <activity
-            android:name=".ui.LoginDialogActivity"
+            android:name="com.yllgame.sdk.ui.LoginDialogActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="landscape"
             android:exported="false"
@@ -339,7 +339,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
  * 如果游戏为跟随传感器横屏，在AndroidManifest.xml内添加如下配置
 ```
         <activity
-            android:name=".ui.AccountManagerActivity"
+            android:name="com.yllgame.sdk.ui.AccountManagerActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
@@ -348,7 +348,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
         </activity>
 
         <activity
-            android:name=".ui.AccountBindActivity"
+            android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:exported="false"
@@ -356,7 +356,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
         </activity>
 
         <activity
-            android:name=".ui.LoginDialogActivity"
+            android:name="com.yllgame.sdk.ui.LoginDialogActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="sensorLandscape"
             android:exported="false"

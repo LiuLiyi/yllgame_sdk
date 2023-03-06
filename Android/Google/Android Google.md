@@ -132,6 +132,24 @@ allprojects {
      */
     public static void setNetMode(int mode)
 ```
+- 调用当前游戏服务协议函数为：``  YllGameSdk.setTermsService(int mode); ``
+``` java
+    /**
+     * 当前游戏服务协议
+     *
+     * @param termsServiceURL 游戏服务协议网址
+     */
+    public static void setTermsService(String termsServiceURL)
+```
+- 调用当前游戏隐私政策函数为：``  YllGameSdk.setPrivacyPolicy(int mode); ``
+``` java
+    /**
+     * 当前游戏隐私政策
+     *
+     * @param privacyPolicyURL 游戏隐私政策网址
+     */
+    public static void setPrivacyPolicy(String privacyPolicyURL)
+```
 **（注：项目的application要在AndroidManifest中注册，项目中初始化参数的key 找运营方）**
 ### 2.2配置Facebook
 在项目中的AndroidManifest中添加

@@ -298,14 +298,6 @@ android{
             android:exported="false"
             android:theme="@style/YllGameSdkActivityTheme" >
         </activity>
-
-        <activity
-            android:name="com.yllgame.sdk.ui.LoginDialogActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:exported="false"
-            android:theme="@style/YllGameSdkActivityTranslucentTheme" >
-        </activity>
 ```
  * 如果游戏为横屏，在AndroidManifest.xml内添加如下配置
 ```
@@ -325,14 +317,6 @@ android{
             android:exported="false"
             android:theme="@style/YllGameSdkActivityTheme" >
         </activity>
-
-        <activity
-            android:name="com.yllgame.sdk.ui.LoginDialogActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="landscape"
-            android:exported="false"
-            android:theme="@style/YllGameSdkActivityTranslucentTheme" >
-        </activity>
 ```
  * 如果游戏为跟随传感器横屏，在AndroidManifest.xml内添加如下配置
 ```
@@ -351,14 +335,6 @@ android{
             android:screenOrientation="sensorLandscape"
             android:exported="false"
             android:theme="@style/YllGameSdkActivityTheme" >
-        </activity>
-
-        <activity
-            android:name="com.yllgame.sdk.ui.LoginDialogActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="sensorLandscape"
-            android:exported="false"
-            android:theme="@style/YllGameSdkActivityTranslucentTheme" >
         </activity>
 ```
 ## 3.SDK Api接口

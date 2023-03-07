@@ -161,8 +161,8 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
     [YllGameSDK getInstance].appleAppId = @"";
     [YllGameSDK getInstance].appsFlyerDevKey = @"";
     
-    // languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 该集合默认第一个是SDK的默认语言
-    [YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
+    // languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 zh-Hans 中文 该集合默认第一个是SDK的默认语言
+    [YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr", @"zh-Hans"];
     // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
     [YllGameSDK getInstance].localLanguage = @"ar";
     // 设置游戏隐私协议
@@ -204,23 +204,53 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[YllGameSDK getInstance] yg_applicationWillTerminate:application];
 }
+  
+```
+### 2.2 配置 GameAppId
+- SDK方提供
+  
+```obj-c
+[YllGameSDK getInstance].gameAppId = @"";
 ```
   
-### 2.2 设置SDK语言
-
+### 2.3 配置 appleAppId
+- SDK方提供
+  
 ```obj-c
-// languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 该集合默认第一个是SDK的默认语言
-[YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
+[YllGameSDK getInstance].appleAppId = @"";
+```
+  
+### 2.5 配置 appsFlyerDevKey
+- SDK方提供
+  
+```obj-c
+[YllGameSDK getInstance].appsFlyerDevKey = @"";
+```
+  
+### 2.6 配置SDK语言
+```obj-c
+// languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 zh-Hans 中文 该集合默认第一个是SDK的默认语言
+[YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr", @"zh-Hans"];
 // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
 [YllGameSDK getInstance].localLanguage = @"ar";
 ```
   
-### 2.3 设置SDK网络模式
+### 2.7 配置SDK网络模式
 - 提供了 YGStrongNet 和 YGWeakNet 两种网络模式, SDK 默认为 YGStrongNet
 - 当设置为 YGWeakNet 模式, 在 SDK 登录且同步角色未成功 或 无网络情况下, SDK 除登录页面以外的功能将受到限制使用
 
 ```obj-c
 [YllGameSDK getInstance].netMode = YGStrongNet;
+```
+  
+### 2.8 配置游戏隐私协议
+```obj-c
+[YllGameSDK getInstance].privacyPolicy = @"";
+```
+  
+### 2.9 配置游戏服务协议
+```obj-c
+[YllGameSDK getInstance].termsService = @"";
 ```
   
 ## 3. SDK API接口

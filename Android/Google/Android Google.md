@@ -132,7 +132,7 @@ allprojects {
      */
     public static void setNetMode(int mode)
 ```
-- 调用当前游戏服务协议函数为：``  YllGameSdk.setTermsService(int termsServiceURL); ``
+- 调用当前游戏服务协议函数为：``  YllGameSdk.setTermsService(String termsServiceURL); ``
 ``` java
     /**
      * 当前游戏服务协议
@@ -141,7 +141,7 @@ allprojects {
      */
     public static void setTermsService(String termsServiceURL)
 ```
-- 调用当前游戏隐私政策函数为：``  YllGameSdk.setPrivacyPolicy(int privacyPolicyURL); ``
+- 调用当前游戏隐私政策函数为：``  YllGameSdk.setPrivacyPolicy(String privacyPolicyURL); ``
 ``` java
     /**
      * 当前游戏隐私政策

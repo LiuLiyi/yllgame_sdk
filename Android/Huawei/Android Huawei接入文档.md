@@ -288,9 +288,7 @@ android{
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/YllGameSdkActivityTheme" >
-            
         </activity>
-
         <activity
             android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"
@@ -307,9 +305,7 @@ android{
             android:exported="false"
             android:screenOrientation="landscape"
             android:theme="@style/YllGameSdkActivityTheme" >
-            
         </activity>
-
         <activity
             android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"
@@ -326,9 +322,7 @@ android{
             android:exported="false"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/YllGameSdkActivityTheme" >
-            
         </activity>
-
         <activity
             android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"

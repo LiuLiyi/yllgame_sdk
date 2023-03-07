@@ -308,9 +308,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/YllGameSdkActivityTheme" >
-            
         </activity>
-
         <activity
             android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"
@@ -327,9 +325,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
             android:exported="false"
             android:screenOrientation="landscape"
             android:theme="@style/YllGameSdkActivityTheme" >
-            
         </activity>
-
         <activity
             android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"
@@ -346,9 +342,7 @@ Task execution finished 'uploadCrashlyticsSymbolFileDebug'.则代表符号表上
             android:exported="false"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/YllGameSdkActivityTheme" >
-            
         </activity>
-
         <activity
             android:name="com.yllgame.sdk.ui.AccountBindActivity"
             android:configChanges="orientation|screenSize"

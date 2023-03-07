@@ -888,7 +888,7 @@ AndroidManifest.xml
     public void showCustomerView(Activity activity)
 ```
 ### 3.33 获取初始化语区
-- SDK会在初始化时通过回调YGReceiver，示例代码参考2.3和2.4
+- SDK会在初始化时通过回调YGReceiver，登陆会在YGLoginReceiver回调。示例代码参考2.3和2.4
 ### 3.34 删除游戏角色
 - 调用删除游戏角色函数为：`` YGUserApi.getInstance().deleteRole ``
 ``` java

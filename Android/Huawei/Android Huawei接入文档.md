@@ -199,6 +199,8 @@ public class YGLoginReceiver extends BroadcastReceiver {
             //该示例中通过EventBus通知并且更新主界面的更新 具体的结合自身需求修改
             if (userInfoEntity.getType() == GameUserInfoEntity.TYPE_LOGIN_ACCOUNT_SUCCESS) {
                 //登陆成功
+                //需要设置语言
+                YllGameSdk.setLanguage(userInfoEntity.getLastRegion());
             } else if (userInfoEntity.getType() == GameUserInfoEntity.TYPE_LOGIN_ACCOUNT_FAIL) {
                 //登陆失败
             } else if (userInfoEntity.getType() == GameUserInfoEntity.TYPE_FAIL_ACCOUNT_REMOTE) {
@@ -886,7 +888,7 @@ AndroidManifest.xml
     public void showCustomerView(Activity activity)
 ```
 ### 3.33 获取初始化语区
-- SDK会在初始化时通过回调YGReceiver，示例代码参考2.4
+- SDK会在初始化时通过回调YGReceiver，示例代码参考2.3和2.4
 ### 3.34 删除游戏角色
 - 调用删除游戏角色函数为：`` YGUserApi.getInstance().deleteRole ``
 ``` java

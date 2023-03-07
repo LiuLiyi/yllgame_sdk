@@ -165,6 +165,10 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
     [YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr"];
     // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
     [YllGameSDK getInstance].localLanguage = @"ar";
+    // 设置游戏隐私协议
+    [YllGameSDK getInstance].privacyPolicy = @"https://www.yallagame.com/pc/mkw/policy";
+    // 设置游戏服务协议
+    [YllGameSDK getInstance].termsService = @"https://www.yallagame.com/pc/mkw/terms";
     // 实现推送代理
     [YllGameSDK getInstance].notificationDelegate = self;
     // 设置完以上属性之后再调用该方法, 不然对于语区统计会有影响

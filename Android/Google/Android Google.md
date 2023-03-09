@@ -727,10 +727,11 @@ AndroidManifest.xml
      *                 {@link YGConstants#SDK_IMAGE_SELECT_NONE} 表示选择图片不裁剪
      *                 {@link YGConstants#SDK_IMAGE_SELECT_CLIP_RATIO_1_1} 选择图片裁剪
      *                 {@link YGConstants#SDK_IMAGE_SELECT_PREVIEW} 选择图片和预览
-     * @param callBack 上传回调返回图片绝对路劲 注：列表展示、缩略图等展示都可以使用 [阿里云图片处理](https://help.aliyun.com/document_detail/101260.html) ,来让显示效果更快
+     * @param callBack 上传回调返回图片绝对路径
      */
     public void updatePicture(Activity activity, int type, YGCallBack<String> callBack)
 ```
+注：列表展示、缩略图等展示都可以使用 [阿里云图片处理](https://help.aliyun.com/document_detail/101260.html) ,来让显示效果更快
 代码示例
 ``` java 
 

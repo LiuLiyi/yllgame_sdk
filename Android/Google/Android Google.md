@@ -4,7 +4,7 @@
 支持平台：Android</br>
 系统要求: Android6.0+ </br>
 环境要求: Android Studio</br>
-支持语言：阿语，英语，土耳其语，简体中文</br>
+支持语言：阿语，英语，土耳其语，简体中文，繁体中文</br>
 
 ## 1.接入流程
 ### 1.1集成AAR包
@@ -110,7 +110,7 @@ allprojects {
     /**
      * 设置SDK支持语言，必须调用在init之前
      *
-     * @param languageList 游戏支持语言集合 现支持 ar 阿语 en英语 tr土耳其语 zh简体中文 该集合默认第一个是SDK的默认语言
+     * @param languageList 游戏支持语言集合 现支持 ar 阿语 en英语 tr土耳其语 zh简体中文 zhtc繁体中文 该集合默认第一个是SDK的默认语言
      */
     public static void setLanguageList(List<String> languageList) 
  ```
@@ -119,7 +119,7 @@ allprojects {
     /**
      * 设置SDK默认语言
      *
-     * @param localLanguage ar 阿语 en英语 tr土耳其语 zh简体中文
+     * @param localLanguage ar 阿语 en英语 tr土耳其语 zh简体中文  zhtc繁体中文
      */
     public static void setLanguage(String localLanguage)
  ```

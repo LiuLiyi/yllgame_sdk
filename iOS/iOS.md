@@ -8,7 +8,7 @@ IDE: Xcode14.0+
 
 SDK支持系统: iOS11.0+
 
-SDK支持语言: 阿拉伯语(ar)，英语(en)，土耳其语(tr), 简体中文(zh-Hans)
+SDK支持语言: 阿拉伯语(ar)，英语(en)，土耳其语(tr)，简体中文(zh)，繁体中文(zhtc)
 
 SDK支持架构: arm64
 
@@ -161,10 +161,16 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
     [YllGameSDK getInstance].appleAppId = @"";
     [YllGameSDK getInstance].appsFlyerDevKey = @"";
     
-    // languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 zh-Hans 中文 该集合默认第一个是SDK的默认语言
-    [YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr", @"zh-Hans"];
-    // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
-    [YllGameSDK getInstance].localLanguage = @"ar";
+    /** languageList SDK支持语言集合, 该集合默认第一个值将是SDK的默认语言, 若为null SDK只支持默认的 en
+      ar     阿语
+      en     英语
+      tr     土语
+      zh     中文简体
+      zhtc   中文繁体
+    */
+    [YllGameSDK getInstance].languageList = @[@"en", @"ar", @"tr", @"zh", @"zhtc"];
+    // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 en
+    [YllGameSDK getInstance].localLanguage = @"en";
     // 设置游戏隐私协议地址(发行提供)
     [YllGameSDK getInstance].privacyPolicy = @"";
     // 设置游戏服务协议地址(发行提供)
@@ -229,10 +235,16 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
   
 ### 2.6 配置SDK语言
 ```obj-c
-// languageList 语言集合  游戏支持语言集合 现支持 ar 阿语 en 英语 tr 土耳其 zh-Hans 中文 该集合默认第一个是SDK的默认语言
-[YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr", @"zh-Hans"];
-// 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
-[YllGameSDK getInstance].localLanguage = @"ar";
+/** languageList SDK支持语言集合, 该集合默认第一个值将是SDK的默认语言, 若为null SDK只支持默认的 en
+    ar     阿语
+    en     英语
+    tr     土语
+    zh     中文简体
+    zhtc   中文繁体
+ */
+[YllGameSDK getInstance].languageList = @[@"en", @"ar", @"tr", @"zh", @"zhtc"];
+// 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 en
+[YllGameSDK getInstance].localLanguage = @"en";
 ```
   
 ### 2.7 配置SDK网络模式

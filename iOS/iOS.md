@@ -165,9 +165,9 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
     [YllGameSDK getInstance].languageList = @[@"ar", @"en", @"tr", @"zh-Hans"];
     // 当前设置的语言, 不传以 languageList 的第一个值为默认语言, 若 languageList 为 null, 默认为 ar
     [YllGameSDK getInstance].localLanguage = @"ar";
-    // 设置游戏隐私协议
+    // 设置游戏隐私协议地址(发行提供)
     [YllGameSDK getInstance].privacyPolicy = @"";
-    // 设置游戏服务协议
+    // 设置游戏服务协议地址(发行提供)
     [YllGameSDK getInstance].termsService = @"";
     // 实现推送代理
     [YllGameSDK getInstance].notificationDelegate = self;
@@ -243,12 +243,12 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
 [YllGameSDK getInstance].netMode = YGStrongNet;
 ```
   
-### 2.8 配置游戏隐私协议
+### 2.8 配置游戏隐私协议地址(发行提供)
 ```obj-c
 [YllGameSDK getInstance].privacyPolicy = @"";
 ```
   
-### 2.9 配置游戏服务协议
+### 2.9 配置游戏服务协议地址(发行提供)
 ```obj-c
 [YllGameSDK getInstance].termsService = @"";
 ```

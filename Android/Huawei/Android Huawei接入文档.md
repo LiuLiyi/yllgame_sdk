@@ -747,7 +747,7 @@ AndroidManifest.xml
     }
 ```
 ### 3.22 获取活动信息
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().getActivityInfos ``
+- SDK调起获取活动信息的函数为：`` YGUserApi.getInstance().getActivityInfos ``
 ``` java 
     /**
      * 获取活动信息
@@ -759,7 +759,7 @@ AndroidManifest.xml
     public void getActivityInfos(String serviceId, String roleId, YGCallBack<List<GameActivityEntity>> callBack)
 ```
 ### 3.23 获取手机号绑定状态
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().getPhoneBindState ``
+- SDK调起获取手机绑定状态的函数为：`` YGUserApi.getInstance().getPhoneBindState ``
 ``` java 
     /**
      * 获取手机绑定状态

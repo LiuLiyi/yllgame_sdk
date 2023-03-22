@@ -815,7 +815,7 @@ AndroidManifest.xml
     public void showAccountBindView(Activity activity)
   ```
 ### 3.26 展示手机号绑定页面
-- SDK调起语聊举报的函数为：`` YGUserApi.getInstance().showPhoneBindView ``
+- SDK调起显示绑定界面的函数为：`` YGUserApi.getInstance().showPhoneBindView ``
 ``` java 
     /**
      * 显示绑定界面

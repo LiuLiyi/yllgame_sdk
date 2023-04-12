@@ -138,7 +138,7 @@ SDK需要安装Cocoapods管理工具([参考](https://www.kancloud.cn/god-is-cod
 - Privacy - Location Always Usage Description 地理位置权限
 - Privacy - Location Usage Description 地理位置权限
 - Privacy - Location When In Use Usage Description 地理位置权限
-- 权限的具体描述请根据游戏的实际使用进行定义，如果游戏没有使用，可以向SDK方要通用的阿语描述
+- 权限的具体描述请根据游戏的实际使用进行定义，如果游戏没有使用，可以向SDK方要通用的描述
 
 `注: iOS14.0+ 因为有部分相册功能, 需要添加 PhotosUI.framework`  
 

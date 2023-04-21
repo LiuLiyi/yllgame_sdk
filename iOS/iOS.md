@@ -708,6 +708,5 @@ YGLanguage language = [[YllGameSDK getInstance] yg_getSDKLanguage];
 /// @param productIds 商品Id数组
 /// @param completeHandler BOOL true: 成功 false: 失败
 [[YllGameSDK getInstance] yg_getProductLocaleInfoWithProductIds:<#(nonnull NSArray<NSString *> *)#> completionHandler:<#^(NSArray<YGProductInfoModel *> * _Nonnull)completionHandler#>];
-;
 ```  
     

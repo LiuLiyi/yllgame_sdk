@@ -700,4 +700,14 @@ YGLanguage language = [[YllGameSDK getInstance] yg_getSDKLanguage];
 /// @param serverId 角色所在游戏区服id
 /// @param completeHandler BOOL true: 成功 false: 失败
 [[YllGameSDK getInstance] yg_deleteRoleWithRoleId:<#(NSString * _Nonnull)#> serverId:<#(NSString * _Nonnull)#> completeHandler:<#^(BOOL)completeHandler#>];
-```      
+```     
+      
+### 3.35 获取商品本地化信息
+```obj-c
+/// 获取商品本地化信息
+/// @param productIds 商品Id数组
+/// @param completeHandler BOOL true: 成功 false: 失败
+[[YllGameSDK getInstance] yg_getProductLocaleInfoWithProductIds:<#(nonnull NSArray<NSString *> *)#> completionHandler:<#^(NSArray<YGProductInfoModel *> * _Nonnull)completionHandler#>];
+;
+```  
+    
